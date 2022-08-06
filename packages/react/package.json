@@ -1,0 +1,65 @@
+{
+  "name": "@yoru-ui/react",
+  "version": "1.0.0",
+  "description": "Responsive and accessible React UI components built with React and Emotion",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@yoru-ui/button": "workspace:*"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "author": "justirva09",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justirva09/Yoru-UI-Component",
+    "directory": "packages/button"
+  },
+  "bugs": {
+    "url": "https://github.com/justirva09/Yoru-UI-Component/issues"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Yoru UI",
+    "url": "https://storybook.yoru-ui.com"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
+  }
+}

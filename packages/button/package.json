@@ -1,0 +1,36 @@
+{
+  "name": "@yoru-ui/button",
+  "version": "1.0.0",
+  "description": "Button ui components",
+  "keywords": [
+    "Button",
+    "UI Button react"
+  ],
+  "author": "justirva09",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justirva09/Yoru-UI-Component",
+    "directory": "packages/button"
+  },
+  "bugs": {
+    "url": "https://github.com/justirva09/Yoru-UI-Component/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
+  }
+}
