@@ -1,0 +1,22 @@
+{
+  "name": "@yoru-ui/system",
+  "version": "1.0.0",
+  "description": "This is yoru styled system for React Component",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsup index.ts --format=esm,cjs --dts"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "react": ">=18"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "react": "^18.2.0"
+  }
+}
