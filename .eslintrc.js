@@ -6,7 +6,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'plopfile.js'],
   settings: {
     react: {
       version: 'detect',
