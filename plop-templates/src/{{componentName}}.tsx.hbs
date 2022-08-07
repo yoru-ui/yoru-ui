@@ -1,0 +1,10 @@
+import * as React from "react"
+
+export interface {{capitalize componentName}}Properties {
+  // your props here
+  children: React.ReactNode
+}
+
+export const {{capitalize componentName}}: React.FC<{{capitalize componentName}}Properties>  = ({children}) =>  {
+  return <div>{children}</div>
+}

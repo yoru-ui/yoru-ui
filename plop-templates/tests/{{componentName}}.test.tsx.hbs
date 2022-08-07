@@ -1,0 +1,10 @@
+import * as React from "react";
+import { render } from '@testing-library/react';
+import { {{capitalize componentName}} } from "../src";
+
+describe("{{capitalize componentName}}", () => {
+  test("it should test {{capitalize componentName}} component", () => {
+    const { getByText } = render(<{{capitalize componentName}}>{{capitalize componentName}} Component</{{capitalize componentName}}>);
+    expect(getByText('{{capitalize componentName}} Component')).toBeDefined();
+  });
+});
