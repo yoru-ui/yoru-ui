@@ -1,10 +1,16 @@
-import emotionStyled from '@emotion/styled';
+import emotionStyled, { FunctionInterpolation } from '@emotion/styled';
 
 type DOMElements = keyof JSX.IntrinsicElements;
 
+type YoruStyleProperties = {
+  __style?: React.CSSProperties;
+};
+
+type MergeInterface<FirstInterface, SecondInterface> = FirstInterface & SecondInterface;
+
 type YoruComponent = {
   <ComponentProperties extends keyof JSX.IntrinsicElements>(
-    props: React.ComponentProps<ComponentProperties>,
+    props: MergeInterface<React.ComponentProps<ComponentProperties>, YoruStyleProperties>,
   ): JSX.Element;
 };
 
@@ -12,8 +18,29 @@ export type HTMLYoruElements = {
   [Tag in DOMElements]: YoruComponent;
 };
 
-const styled = <T extends React.ElementType<any>>(component: T) => {
-  return emotionStyled(component as React.ComponentType<any>, {})() as YoruComponent;
+type StyleResolverProps = {
+  __style?: React.CSSProperties;
+};
+
+interface GetStyleObject {
+  (
+    options: React.CSSProperties | ((props: StyleResolverProps) => React.CSSProperties),
+  ): FunctionInterpolation<StyleResolverProps>;
+}
+
+export type YoruStyledOptions =
+  | React.CSSProperties
+  | ((props: StyleResolverProps) => React.CSSProperties);
+
+const getStyleObject: GetStyleObject = (): FunctionInterpolation<StyleResolverProps> =>
+  (props => {
+    const { __style } = props;
+    return __style;
+  }) as FunctionInterpolation<StyleResolverProps>;
+
+const styled = <T extends React.ElementType<any>>(component: T): YoruComponent => {
+  const cssObject = getStyleObject({});
+  return emotionStyled(component as React.ComponentType<any>, {})(cssObject) as YoruComponent;
 };
 
 const factory = () => {
