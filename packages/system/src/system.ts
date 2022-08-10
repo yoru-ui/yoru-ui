@@ -1,4 +1,5 @@
 import emotionStyled, { FunctionInterpolation } from '@emotion/styled';
+
 import type { PseudoProperties } from './pseudo';
 import { transformPseudo } from './pseudo';
 
