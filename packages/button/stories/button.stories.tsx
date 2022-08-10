@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 
 import { Button } from '../src/button';
 
@@ -15,4 +15,14 @@ export default {
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-export const Primary: ComponentStory<typeof Button> = () => <Button>Button</Button>;
+export const WithVariants = () => {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+      <Button variant="primary" className="sdsda">
+        Button
+      </Button>
+      <Button variant="secondary">Button</Button>
+      <Button variant="danger">Button</Button>
+    </div>
+  );
+};
