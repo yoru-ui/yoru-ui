@@ -1,9 +1,9 @@
-import { VariantsProperties } from '../types';
+import { colors } from '../foundations/colors';
 
 const baseStyle: React.CSSProperties = {
   lineHeight: '1.2',
   borderRadius: '0.25rem',
-  fontWeight: 'semibold',
+  fontWeight: '500',
   whiteSpace: 'nowrap',
   textAlign: 'center',
   cursor: 'pointer',
@@ -17,21 +17,27 @@ const baseStyle: React.CSSProperties = {
   border: '1px solid transparent',
 };
 
-const primaryVariants: VariantsProperties = {
-  backgroundColor: '#0ea5e9',
-  color: '#fff',
+const primaryVariants = {
+  backgroundColor: colors.sky[500],
+  color: colors.white,
+  '&:hover': {
+    background: colors.sky[400],
+  },
 };
 
-const secondaryVariants: VariantsProperties = {
-  backgroundColor: '#CBEEFD',
-  color: '#0ea5e9',
+const secondaryVariants = {
+  backgroundColor: colors.sky[100],
+  color: colors.sky[500],
+  '&:hover': {
+    background: colors.sky[50],
+  },
 };
 
 const dangerVariants = {
-  backgroundColor: '#F43F5E',
-  color: '#fff',
-  _hover: {
-    backgroundColor: '#333',
+  backgroundColor: colors.red[500],
+  color: colors.white,
+  '&:hover': {
+    background: colors.red[400],
   },
 };
 

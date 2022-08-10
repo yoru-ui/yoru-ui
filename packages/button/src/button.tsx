@@ -15,8 +15,7 @@ export const Button: React.FC<ButtonProps> = props => {
 
   const buttonStyles: React.CSSProperties = {
     ...styledButton.baseStyle,
-    background: variant ? variants.backgroundColor : '#f3f4f6',
-    color: variant ? variants.color : '#1F0101',
+    ...variants,
   };
 
   return (
