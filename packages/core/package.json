@@ -1,7 +1,7 @@
 {
-  "name": "@yoru-ui/system",
+  "name": "@yoru-ui/core",
   "version": "1.0.0",
-  "description": "This is yoru styled system for React Component",
+  "description": "This is yoru core system for React Component",
   "main": "index.js",
   "scripts": {
     "build": "tsup index.ts --format=esm,cjs --dts"
