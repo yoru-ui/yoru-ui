@@ -18,9 +18,8 @@ export default {
 export const WithVariants = () => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-      <Button variant="primary" className="sdsda">
-        Button
-      </Button>
+      <Button>Button</Button>
+      <Button variant="primary">Button</Button>
       <Button variant="secondary">Button</Button>
       <Button variant="danger">Button</Button>
     </div>

@@ -3,11 +3,11 @@ import React from 'react';
 import { useGetThemes, useGetVariants } from '@yoru-ui/themes';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  variant?: 'default' | 'primary' | 'secondary' | 'success' | 'danger';
 }
 
 export const Button: React.FC<ButtonProps> = props => {
-  const { variant = 'primary', children } = props;
+  const { variant = 'default', children } = props;
 
   const styledButton = useGetThemes('Button');
 
@@ -19,12 +19,7 @@ export const Button: React.FC<ButtonProps> = props => {
   };
 
   return (
-    <yoru.button
-      type="button"
-      __style={buttonStyles}
-      className={`yoru-button yoru-button--${variant}`}
-      {...props}
-    >
+    <yoru.button type="button" __style={buttonStyles} className="yoru-button" {...props}>
       {children}
     </yoru.button>
   );
