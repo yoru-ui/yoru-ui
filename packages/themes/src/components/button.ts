@@ -2,6 +2,9 @@ import { colors } from '../foundations/colors';
 
 // todo: make transform variable from js to css
 const baseStyle: React.CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   lineHeight: '1.2',
   borderRadius: '0.25rem',
   fontWeight: '500',
@@ -18,13 +21,13 @@ const baseStyle: React.CSSProperties = {
 
 const defaultVariants = {
   backgroundColor: colors.gray[200],
-  color: colors.gray[900],
+  color: `${colors.gray[900]}`,
   outline: {
     backgroundColor: colors.transparent,
     borderColor: colors.gray[500],
     color: colors.gray[900],
   },
-  '&:hover': {
+  _hover: {
     background: colors.gray[300],
   },
 };
@@ -32,7 +35,7 @@ const defaultVariants = {
 const primaryVariants = {
   backgroundColor: colors.sky[500],
   color: colors.white,
-  '&:hover': {
+  _hover: {
     background: colors.sky[600],
   },
 };
@@ -40,12 +43,7 @@ const primaryVariants = {
 const secondaryVariants = {
   backgroundColor: colors.sky[100],
   color: colors.sky[500],
-  outline: {
-    backgroundColor: colors.transparent,
-    color: colors.sky[500],
-    borderColor: colors.sky[300],
-  },
-  '&:hover': {
+  _hover: {
     background: colors.sky[200],
   },
 };
@@ -53,7 +51,7 @@ const secondaryVariants = {
 const dangerVariants = {
   backgroundColor: colors.red[500],
   color: colors.white,
-  '&:hover': {
+  _hover: {
     background: colors.red[600],
   },
 };
@@ -66,7 +64,28 @@ const variants = {
   danger: dangerVariants,
 };
 
+// size button
+const sizes = {
+  // https://tailwindcss.com/docs/font-size
+  sm: {
+    height: '1.5rem',
+    fontSize: '0.75rem', // todo: make it dynamic we can use sm, md, lg, xl
+    padding: '0.25rem 0.75rem',
+  },
+  md: {
+    height: '2rem',
+    fontSize: '0.875rem', // todo: make it dynamic we can use sm, md, lg, xl
+    padding: '0.25rem 1rem',
+  },
+  lg: {
+    height: '2.5rem',
+    fontSize: '1rem', // todo: make it dynamic we can use sm, md, lg, xl
+    padding: '0.5rem 1.5rem',
+  },
+};
+
 export default {
   baseStyle,
   variants,
+  sizes,
 };
