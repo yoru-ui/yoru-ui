@@ -7,5 +7,6 @@ export const theme = {
 export type Theme = typeof theme;
 
 export * from './hook';
+export * from './theme';
 
 export default theme;
