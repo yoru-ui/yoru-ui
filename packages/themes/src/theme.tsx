@@ -10,9 +10,7 @@ type ThemeConfig = {
   useSystemColorMode?: boolean;
 };
 
-export type ThemeContextType = ThemeVariant;
-
-export const ThemeContext = createContext<ThemeContextType | null>(null);
+export const ThemeContext = createContext<ThemeVariant | null>(null);
 
 export const EmotionThemeProvider: React.FunctionComponent<{
   children?: React.ReactNode;

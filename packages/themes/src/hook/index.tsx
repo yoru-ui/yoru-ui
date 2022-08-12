@@ -20,7 +20,7 @@ export const useGetVariants = (themeKey: string, variantKey: string) => {
 
 export const useTheme = () => {
   const defaultValue = useContext(ThemeContext) as ThemeVariant;
-  const [theme, setTheme] = useState(getTheme(defaultValue));
+  const [theme, setTheme] = useState<ThemeVariant>(getTheme(defaultValue));
 
   useEffect(() => {
     setYoruTheme(theme);
