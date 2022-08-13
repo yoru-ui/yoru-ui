@@ -1,5 +1,8 @@
-import { ThemeProvider, Theme } from '@emotion/react';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { ThemeProvider, Theme, ThemeProviderProps } from '@emotion/react';
 import React, { createContext, useEffect } from 'react';
+import cssVars from './foundations/';
+import { yoruCSSVars } from './create-theme-vars';
 
 export type YoruTheme = Partial<Theme> | ((outherTheme: Theme) => Theme);
 
@@ -12,19 +15,18 @@ type ThemeConfig = {
 
 export const ThemeContext = createContext<ThemeVariant | null>(null);
 
-export const EmotionThemeProvider: React.FunctionComponent<{
-  children?: React.ReactNode;
-  theme: YoruTheme;
-}> = ({ children, theme }): React.ReactElement => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+export const EmotionThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
+  children,
+  theme,
+}): React.ReactElement => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 
 type ThemeContextValue = ThemeVariant | 'system';
 
 export const YoruProvider: React.FunctionComponent<{
   children: React.ReactNode;
   config: ThemeConfig;
-}> = ({ children, config }): React.ReactElement => {
+  theme: ThemeProviderProps['theme'];
+}> = ({ children, config, theme }): React.ReactElement => {
   const { initialColorMode, useSystemColorMode } = config;
 
   useEffect(() => {
@@ -33,7 +35,9 @@ export const YoruProvider: React.FunctionComponent<{
 
   return (
     <ThemeContext.Provider value={initialColorMode}>
-      <EmotionThemeProvider theme={{}}>{children}</EmotionThemeProvider>
+      <EmotionThemeProvider theme={{ ...yoruCSSVars({ ...theme, ...cssVars }) }}>
+        {children}
+      </EmotionThemeProvider>
     </ThemeContext.Provider>
   );
 };

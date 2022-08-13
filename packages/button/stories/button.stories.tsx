@@ -6,6 +6,8 @@ import { ComponentMeta } from '@storybook/react';
 
 import { Button } from '../src/button';
 
+import { YoruProvider } from '@yoru-ui/themes';
+
 export default {
   /* 👇 The title prop is optional.
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
@@ -17,12 +19,21 @@ export default {
 
 export const WithVariants = () => {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-      <Button variant="primary" className="sdsda">
-        Button
-      </Button>
-      <Button variant="secondary">Button</Button>
-      <Button variant="danger">Button</Button>
-    </div>
+    <YoruProvider
+      config={{ initialColorMode: 'light', useSystemColorMode: true }}
+      theme={{
+        colors: {
+          primary: 'hotpink',
+        },
+      }}
+    >
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+        <Button variant="primary" className="sdsda">
+          Button
+        </Button>
+        <Button variant="secondary">Button</Button>
+        <Button variant="danger">Button</Button>
+      </div>
+    </YoruProvider>
   );
 };
