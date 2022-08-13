@@ -1,9 +1,13 @@
-import { VariantsProperties } from '../types';
+import { colors } from '../foundations/colors';
 
+// todo: make transform variable from js to css
 const baseStyle: React.CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   lineHeight: '1.2',
   borderRadius: '0.25rem',
-  fontWeight: 'semibold',
+  fontWeight: '500',
   whiteSpace: 'nowrap',
   textAlign: 'center',
   cursor: 'pointer',
@@ -11,38 +15,77 @@ const baseStyle: React.CSSProperties = {
   padding: '4px 15px',
   height: 32,
   fontSize: 14,
-  backgroundColor: '#f3f4f6',
-  color: '#1F0101',
   boxShadow: '0 2px #00000004',
   border: '1px solid transparent',
 };
 
-const primaryVariants: VariantsProperties = {
-  backgroundColor: '#0ea5e9',
-  color: '#fff',
+const defaultVariants = {
+  backgroundColor: colors.gray[200],
+  color: `${colors.gray[900]}`,
+  outline: {
+    backgroundColor: colors.transparent,
+    borderColor: colors.gray[500],
+    color: colors.gray[900],
+  },
+  _hover: {
+    background: colors.gray[300],
+  },
 };
 
-const secondaryVariants: VariantsProperties = {
-  backgroundColor: '#CBEEFD',
-  color: '#0ea5e9',
+const primaryVariants = {
+  backgroundColor: colors.sky[500],
+  color: colors.white,
+  _hover: {
+    background: colors.sky[600],
+  },
+};
+
+const secondaryVariants = {
+  backgroundColor: colors.sky[100],
+  color: colors.sky[500],
+  _hover: {
+    background: colors.sky[200],
+  },
 };
 
 const dangerVariants = {
-  backgroundColor: '#F43F5E',
-  color: '#fff',
+  backgroundColor: colors.red[500],
+  color: colors.white,
   _hover: {
-    backgroundColor: '#333',
+    background: colors.red[600],
   },
 };
 
 // varians button
 const variants = {
+  default: defaultVariants,
   primary: primaryVariants,
   secondary: secondaryVariants,
   danger: dangerVariants,
 };
 
+// size button
+const sizes = {
+  // https://tailwindcss.com/docs/font-size
+  sm: {
+    height: '1.5rem',
+    fontSize: '0.75rem', // todo: make it dynamic we can use sm, md, lg, xl
+    padding: '0.25rem 0.75rem',
+  },
+  md: {
+    height: '2rem',
+    fontSize: '0.875rem', // todo: make it dynamic we can use sm, md, lg, xl
+    padding: '0.25rem 1rem',
+  },
+  lg: {
+    height: '2.5rem',
+    fontSize: '1rem', // todo: make it dynamic we can use sm, md, lg, xl
+    padding: '0.5rem 1.5rem',
+  },
+};
+
 export default {
   baseStyle,
   variants,
+  sizes,
 };

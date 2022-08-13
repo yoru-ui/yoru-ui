@@ -7,11 +7,10 @@ export const useGetThemes = (themeKey: string) => {
   const { components } = theme;
   const themeStyleConfig = components[themeKey] as ThemeConfigProperties;
   const getStyle = resolverStyleConfig(themeStyleConfig);
-  // should return 3 object: baseStyle, variants, sizes
   return getStyle;
 };
 
-export const useGetVariants = (themeKey: string, variantKey: string) => {
+export const useGetColorScheme = (themeKey: string, variantKey: string) => {
   const Component = useGetThemes(themeKey);
   const { variants } = Component;
   const variant = variants[variantKey] as VariantsProperties;
@@ -27,4 +26,10 @@ export const useTheme = () => {
   }, [theme]);
 
   return { theme, setTheme };
+
+export const useGetSizes = (themeKey: string, sizeKey: string) => {
+  const Component = useGetThemes(themeKey);
+  const { sizes } = Component;
+  const size = sizes[sizeKey] as VariantsProperties;
+  return size;
 };
