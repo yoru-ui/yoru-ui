@@ -1,5 +1,5 @@
 import React from 'react';
-import { yoru } from '@yoru-ui/system';
+import { yoru } from '@yoru-ui/core';
 import { useGetThemes, useGetColorScheme, useGetSizes } from '@yoru-ui/themes';
 
 export interface ButtonDefaultProps {

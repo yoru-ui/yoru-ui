@@ -35,6 +35,7 @@ export type YoruStyledOptions =
 const getStyleObject: GetStyleObject = (): FunctionInterpolation<StyleResolverProps> =>
   (props => {
     const { __style } = props;
+    console.info(props);
     const finalStyle = transformPseudo(__style || {});
     return finalStyle;
   }) as FunctionInterpolation<StyleResolverProps>;

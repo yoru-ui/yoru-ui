@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
-    "@yoru-ui/system": "workspace:^1.0.0",
+    "@yoru-ui/core": "workspace:^1.0.0",
     "@yoru-ui/themes": "workspace:^1.0.0"
   }
 }

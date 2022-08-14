@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { ThemeProvider, Theme, ThemeProviderProps } from '@emotion/react';
+import { ThemeProvider, Theme, ThemeProviderProps, Global } from '@emotion/react';
 import React, { createContext, useEffect } from 'react';
 import cssVars from './foundations/';
 import { yoruCSSVars } from './create-theme-vars';
@@ -36,10 +35,16 @@ export const YoruProvider: React.FunctionComponent<{
   return (
     <ThemeContext.Provider value={initialColorMode}>
       <EmotionThemeProvider theme={{ ...yoruCSSVars({ ...theme, ...cssVars }) }}>
+        <CSSVar />
         {children}
       </EmotionThemeProvider>
     </ThemeContext.Provider>
   );
+};
+
+const CSSVar: React.FunctionComponent<{ root?: string }> = ({ root = ':host, :root' }) => {
+  const selector = [root, '[data-theme]'].join(',');
+  return <Global styles={(theme: any) => ({ [selector]: theme.__cssVar })} />;
 };
 
 /**
