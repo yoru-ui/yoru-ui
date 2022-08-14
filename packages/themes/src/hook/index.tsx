@@ -26,6 +26,7 @@ export const useTheme = () => {
   }, [theme]);
 
   return { theme, setTheme };
+};
 
 export const useGetSizes = (themeKey: string, sizeKey: string) => {
   const Component = useGetThemes(themeKey);
