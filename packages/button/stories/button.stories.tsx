@@ -6,8 +6,6 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Button } from '../src/button';
 
-import { YoruProvider } from '@yoru-ui/themes';
-
 export default {
   title: 'Button',
   component: Button,
@@ -44,21 +42,13 @@ Basic.args = {
 
 export const AllColorScheme = () => {
   return (
-    <YoruProvider
-      config={{ initialColorMode: 'light', useSystemColorMode: true }}
-      theme={{
-        colors: {
-          primary: 'hotpink',
-        },
-      }}
-    >
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-        <Button variant="primary" className="sdsda">
-          Button
-        </Button>
-        <Button variant="secondary">Button</Button>
-        <Button variant="danger">Button</Button>
-      </div>
-    </YoruProvider>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+      <Button colorScheme="default" className="sda sada">
+        Button
+      </Button>
+      <Button colorScheme="primary">Button</Button>
+      <Button colorScheme="secondary">Button</Button>
+      <Button colorScheme="danger">Button</Button>
+    </div>
   );
 };
