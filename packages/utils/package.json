@@ -1,12 +1,7 @@
 {
-  "name": "@yoru-ui/themes",
+  "name": "@yoru-ui/utils",
   "version": "1.0.0",
-  "description": "themes ui components",
-  "keywords": [
-    "themes",
-    "UI themes react",
-    "yoru-ui"
-  ],
+  "description": "utilities function for yoru-ui",
   "author": "justirva09",
   "license": "MIT",
   "main": "dist/index.js",
@@ -33,15 +28,5 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
-  },
-  "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "react": "18.0.0",
-    "react-dom": "^18.0.0"
-  },
-  "devDependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1"
   }
 }
