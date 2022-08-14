@@ -4,8 +4,6 @@ import React from 'react';
 
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { YoruProvider } from '@yoru-ui/themes';
-
 import { Button } from '../src/button';
 
 export default {
@@ -44,15 +42,13 @@ Basic.args = {
 
 export const AllColorScheme = () => {
   return (
-    <YoruProvider theme={{}} config={{ initialColorMode: 'light', useSystemColorMode: false }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-        <Button colorScheme="default" className="sda sada">
-          Button
-        </Button>
-        <Button colorScheme="primary">Button</Button>
-        <Button colorScheme="secondary">Button</Button>
-        <Button colorScheme="danger">Button</Button>
-      </div>
-    </YoruProvider>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+      <Button colorScheme="default" className="sda sada">
+        Button
+      </Button>
+      <Button colorScheme="primary">Button</Button>
+      <Button colorScheme="secondary">Button</Button>
+      <Button colorScheme="danger">Button</Button>
+    </div>
   );
 };

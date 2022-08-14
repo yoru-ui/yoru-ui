@@ -3,5 +3,5 @@ module.exports = {
   // '**/*.{js,jsx,ts,tsx}': 'pnpm clean',
   '**/*.{js,jsx,ts,tsx,json,css,scss}': ['prettier --write'],
   '*/**/*.{js,ts,tsx}': 'pnpm lint --quiet --fix',
-  '**/packages/**/*.{ts,tsx}': 'jest --bail --findRelatedTests',
+  '**/packages/**/*.{ts,tsx}': 'jest --bail --findRelatedTests --passWithNoTests',
 };
