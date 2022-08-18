@@ -19,8 +19,8 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'prettier',
     'airbnb-typescript',
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
