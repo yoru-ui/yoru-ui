@@ -23,11 +23,13 @@ export const Button: React.FC<ButtonDefaultProps> = props => {
   // controll button size
   const buttonSize = useGetSizes('Button', size);
 
-  const buttonStyles: React.CSSProperties = {
-    ...styledButton.baseStyle,
-    ...buttonColors,
-    ...buttonSize,
-    width: block ? '100%' : 'auto',
+  const buttonStyles = () => {
+    return {
+      ...styledButton.baseStyle,
+      ...buttonColors,
+      ...buttonSize,
+      width: block ? '100%' : 'auto',
+    };
   };
 
   const classes = (...classNames: any[]) => classNames.filter(Boolean).join(' ');

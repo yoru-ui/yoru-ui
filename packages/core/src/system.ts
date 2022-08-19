@@ -1,4 +1,5 @@
 import emotionStyled, { FunctionInterpolation } from '@emotion/styled';
+import { runIfFN } from '@yoru-ui/utils/src/function';
 import { getCss } from './css';
 import type { PseudoProperties } from './pseudo';
 
@@ -38,7 +39,8 @@ export type YoruStyledOptions =
 const getStyleObject: GetStyleObject = (): FunctionInterpolation<StyleResolverProps> =>
   (props => {
     const { __style = {}, theme = {} } = props;
-    const style = getCss(__style)(theme);
+    const resolveIsFunction = runIfFN(__style);
+    const style = getCss(resolveIsFunction)(theme);
     return style;
   }) as FunctionInterpolation<StyleResolverProps>;
 

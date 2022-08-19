@@ -1,6 +1,5 @@
 import { colors } from '../foundations/colors';
 
-// todo: make transform variable from js to css
 const baseStyle: React.CSSProperties = {
   display: 'inline-flex',
   alignItems: 'center',
@@ -32,12 +31,14 @@ const defaultVariants = {
   },
 };
 
-const primaryVariants = {
-  backgroundColor: colors.sky[500],
-  color: colors.white,
-  _hover: {
-    background: colors.sky[600],
-  },
+const primaryVariants = () => {
+  return {
+    backgroundColor: colors.sky[500],
+    color: 'white',
+    _hover: {
+      background: colors.sky[600],
+    },
+  };
 };
 
 const secondaryVariants = {
@@ -59,7 +60,7 @@ const dangerVariants = {
 // varians button
 const variants = {
   default: defaultVariants,
-  primary: primaryVariants,
+  primary: primaryVariants(),
   secondary: secondaryVariants,
   danger: dangerVariants,
 };
