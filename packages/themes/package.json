@@ -42,7 +42,9 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@yoru-ui/core": "workspace:^1.0.0"
+    "@emotion/styled": "^11.8.1"
+  },
+  "dependencies": {
+    "@yoru-ui/core": "workspace:*"
   }
 }

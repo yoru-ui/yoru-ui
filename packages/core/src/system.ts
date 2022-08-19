@@ -1,10 +1,12 @@
 import emotionStyled, { FunctionInterpolation } from '@emotion/styled';
+import { getCss } from './css';
 import type { PseudoProperties } from './pseudo';
-import { transformPseudo } from './pseudo';
 
 type DOMElements = keyof JSX.IntrinsicElements;
 
-export type YoruStyleProperties = React.CSSProperties & PseudoProperties;
+export type Theme = Record<string, any>;
+
+export type YoruStyleProperties = React.CSSProperties & PseudoProperties & Record<string, any>;
 
 type MergeInterface<FirstInterface, SecondInterface> = FirstInterface & SecondInterface;
 
@@ -20,6 +22,7 @@ export type HTMLYoruElements = {
 
 type StyleResolverProps = {
   __style?: YoruStyleProperties;
+  theme?: Theme;
 };
 
 interface GetStyleObject {
@@ -34,9 +37,9 @@ export type YoruStyledOptions =
 
 const getStyleObject: GetStyleObject = (): FunctionInterpolation<StyleResolverProps> =>
   (props => {
-    const { __style } = props;
-    const finalStyle = transformPseudo(__style || {});
-    return finalStyle;
+    const { __style = {}, theme = {} } = props;
+    const style = getCss(__style)(theme);
+    return style;
   }) as FunctionInterpolation<StyleResolverProps>;
 
 const styled = <T extends React.ElementType<any>>(component: T): YoruComponent => {
