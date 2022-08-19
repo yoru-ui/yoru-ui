@@ -1,11 +1,7 @@
 {
-  "name": "@yoru-ui/button",
+  "name": "@yoru-ui/utils",
   "version": "1.0.0",
-  "description": "Button ui components",
-  "keywords": [
-    "Button",
-    "UI Button react"
-  ],
+  "description": "utilities function for yoru-ui",
   "author": "justirva09",
   "license": "MIT",
   "main": "dist/index.js",
@@ -20,11 +16,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justirva09/Yoru-UI-Component",
-    "directory": "packages/button"
+    "url": "git+https://github.com/Yoru-UI/yoru-ui",
+    "directory": "packages/themes"
   },
   "bugs": {
-    "url": "https://github.com/justirva09/Yoru-UI-Component/issues"
+    "url": "https://github.com/Yoru-UI/yoru-ui/issues"
   },
   "scripts": {
     "build": "tsup src/index.ts --format=esm,cjs --dts",
@@ -32,10 +28,5 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@yoru-ui/core": "workspace:^1.0.0",
-    "@yoru-ui/themes": "workspace:^1.0.0"
   }
 }

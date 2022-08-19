@@ -23,12 +23,14 @@ export type PseudoProperties = {
  * @param style @type {YoruStyleProperties | string}
  */
 export const transformPseudo = (style: YoruStyleProperties | string): string | object => {
+  let css = {};
   if (typeof style === 'object') {
-    const css = Object.entries(style).map(
-      ([pseudo, value]: [string, string | YoruStyleProperties]) => ({
+    Object.entries(style).forEach(([pseudo, value]: [string, string | YoruStyleProperties]) => {
+      css = {
+        ...css,
         [pseudoSelector[pseudo as keyof Pseudo] ?? pseudo]: transformPseudo(value),
-      }),
-    );
+      };
+    });
     return css;
   }
 
