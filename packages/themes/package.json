@@ -45,6 +45,7 @@
     "@emotion/styled": "^11.8.1"
   },
   "dependencies": {
-    "@yoru-ui/core": "workspace:*"
+    "@yoru-ui/core": "workspace:*",
+    "@yoru-ui/utils": "workspace:*"
   }
 }
