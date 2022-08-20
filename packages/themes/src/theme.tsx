@@ -35,7 +35,7 @@ export const YoruProvider: React.FunctionComponent<{
 
   return (
     <ThemeContext.Provider value={initialColorMode}>
-      <EmotionThemeProvider theme={{ ...yoruCSSVars(mergeWith(theme, cssVars)) }}>
+      <EmotionThemeProvider theme={{ ...yoruCSSVars(mergeWith(cssVars, theme)) }}>
         <CSSVar />
         {children}
       </EmotionThemeProvider>
