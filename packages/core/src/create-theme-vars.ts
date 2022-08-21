@@ -1,4 +1,4 @@
-import { flattenTokens, createCssVariable, FlatTokens } from '@yoru-ui/core';
+import { flattenTokens, createCssVariable, FlatTokens } from './';
 
 export function yoruCSSVars(rawTheme: Record<string, any>): Record<string, any> {
   const theme = {};

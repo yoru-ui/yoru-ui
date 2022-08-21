@@ -1,7 +1,7 @@
 import { ThemeProvider, Theme, ThemeProviderProps, Global } from '@emotion/react';
 import { mergeWith } from '@yoru-ui/utils';
 import React, { createContext, useEffect } from 'react';
-import { yoruCSSVars } from './create-theme-vars';
+import { yoruCSSVars } from '@yoru-ui/core';
 import cssVars from './foundations';
 
 export type YoruTheme = Partial<Theme> | ((outherTheme: Theme) => Theme);
