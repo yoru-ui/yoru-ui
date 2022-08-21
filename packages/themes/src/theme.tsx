@@ -1,7 +1,8 @@
 import { ThemeProvider, Theme, ThemeProviderProps, Global } from '@emotion/react';
+import { mergeWith } from '@yoru-ui/utils';
 import React, { createContext, useEffect } from 'react';
-import cssVars from './foundations/';
 import { yoruCSSVars } from './create-theme-vars';
+import cssVars from './foundations';
 
 export type YoruTheme = Partial<Theme> | ((outherTheme: Theme) => Theme);
 
@@ -34,7 +35,7 @@ export const YoruProvider: React.FunctionComponent<{
 
   return (
     <ThemeContext.Provider value={initialColorMode}>
-      <EmotionThemeProvider theme={{ ...yoruCSSVars({ ...theme, ...cssVars }) }}>
+      <EmotionThemeProvider theme={{ ...yoruCSSVars(mergeWith(cssVars, theme)) }}>
         <CSSVar />
         {children}
       </EmotionThemeProvider>

@@ -1,5 +1,5 @@
 import { isArray, isObject } from '../assertion';
-import { runIfFN } from '../function';
+
 describe('Should test assertion utility', () => {
   it('Should test isArray utils', () => {
     expect(isArray([])).toBe(true);
@@ -17,24 +17,5 @@ describe('Should test assertion utility', () => {
     expect(isObject(undefined)).toBe(false);
     expect(isObject(1)).toBe(false);
     expect(isObject('1')).toBe(false);
-  });
-
-  it('Should test runIfFn to return the actual data', () => {
-    const colorSceheme = () => {
-      return {
-        backgroundColor: 'colors.sky[500]',
-        color: 'white',
-        _hover: {
-          background: 'colors.sky[600]',
-        },
-      };
-    };
-    expect(runIfFN(colorSceheme)).toEqual({
-      backgroundColor: 'colors.sky[500]',
-      color: 'white',
-      _hover: {
-        background: 'colors.sky[600]',
-      },
-    });
   });
 });
