@@ -1,13 +1,19 @@
 import { isObject } from '@yoru-ui/utils';
 import { YoruStyleProperties } from './system';
 import configs from './configs';
-import { transformPseudo, pseudoSelector } from './pseudo';
+import { keyIsPseudoSelector, pseudoSelector } from './pseudo';
 
 export const getCss =
   (style: YoruStyleProperties) =>
   (theme: Record<string, any>): YoruStyleProperties => {
-    for (const key of Object.keys(style)) {
+    for (let key of Object.keys(style)) {
       let transform;
+
+      if (keyIsPseudoSelector(key)) {
+        style[pseudoSelector[key]] = style[key];
+        delete style[key];
+        key = pseudoSelector[key];
+      }
 
       if (key in configs) {
         transform = configs[key as keyof typeof configs];
@@ -15,11 +21,6 @@ export const getCss =
 
       if (transform) {
         style[key] = transform(theme, style[key]);
-      }
-
-      if (key in pseudoSelector) {
-        style[pseudoSelector[key as keyof typeof pseudoSelector]] = transformPseudo(style[key]);
-        delete style[key];
       }
     }
     return style;

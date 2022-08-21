@@ -1,12 +1,40 @@
+import configs from '../configs';
 import { tokenToCSSVar } from '../css';
-import { Theme } from '../system';
+import { Pseudo, pseudoSelector } from '../pseudo';
+import { Theme, YoruStyleProperties } from '../system';
+import { runIfFN } from '@yoru-ui/utils';
 
-const transformCSS = (token: string) => (theme: Theme, value: string) => {
-  const _value = tokenToCSSVar(token, value)(theme);
+export type Transform = (theme: Theme, value: string | object) => object;
 
-  return _value;
-};
+export type TransformConfig = Record<string, Transform>;
 
-export const transformConfig = {
-  colors: transformCSS('colors'),
+const transformCSS =
+  (token: string): Transform =>
+  (theme: Theme, value: string | object) => {
+    let css = {};
+
+    /**
+     * Recursively transform pseudo properties
+     * @param style @type {YoruStyleProperties | string}
+     */
+    if (typeof value === 'object') {
+      Object.entries(value).forEach(([pseudo, _value]: [string, string | YoruStyleProperties]) => {
+        const transform =
+          pseudo in configs ? configs[pseudo as keyof typeof configs](theme, _value) : _value;
+        css = {
+          ...css,
+          [pseudoSelector[pseudo as keyof Pseudo] ?? pseudo]: runIfFN(transform),
+        };
+      });
+      return css;
+    }
+
+    const _value = tokenToCSSVar(token, value)(theme);
+
+    return _value;
+  };
+
+export const transformConfig: TransformConfig = {
+  color: transformCSS('colors'),
+  pseudo: transformCSS('pseudo'),
 };

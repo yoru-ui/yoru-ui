@@ -36,7 +36,7 @@ const primaryVariants = () => {
     backgroundColor: colors.sky[500],
     color: 'white',
     _hover: {
-      background: colors.sky[600],
+      background: 'red.200',
     },
   };
 };
@@ -53,7 +53,7 @@ const dangerVariants = {
   backgroundColor: colors.red[500],
   color: colors.white,
   _hover: {
-    background: colors.red[600],
+    background: 'red.600',
   },
 };
 
