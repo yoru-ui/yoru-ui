@@ -1,5 +1,5 @@
 import { Transform, transformConfig } from '../utils';
-import { pseudoSelector } from '../pseudo';
+import { Pseudo, pseudoSelector } from '../pseudo';
 
 let pseudoTransformer: Record<string, Transform> = {};
 
@@ -10,4 +10,4 @@ Object.keys(pseudoSelector).map(selector => {
   };
 });
 
-export default pseudoTransformer;
+export default pseudoTransformer as Record<keyof Pseudo, Transform>;

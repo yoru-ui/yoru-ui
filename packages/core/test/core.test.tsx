@@ -61,7 +61,7 @@ describe('Should test the factory system', () => {
     expect(finalStyle).toMatchInlineSnapshot(`
         Object {
           "&:hover, &[data-hover]": Object {
-            "backgroundColor": "grey.100",
+            "backgroundColor": "var(--yoru-colors-grey-100)",
           },
           "borderRadius": "1em",
           "color": "var(--yoru-colors-grey-500)",

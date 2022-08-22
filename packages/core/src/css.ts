@@ -10,6 +10,7 @@ export const getCss =
       let transform;
 
       if (keyIsPseudoSelector(key)) {
+        transform = configs[key as keyof typeof configs];
         style[pseudoSelector[key]] = style[key];
         delete style[key];
         key = pseudoSelector[key];

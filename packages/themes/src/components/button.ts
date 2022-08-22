@@ -43,9 +43,9 @@ const primaryVariants = () => {
 
 const secondaryVariants = {
   backgroundColor: colors.sky[100],
-  color: colors.sky[500],
+  color: 'sky.500',
   _hover: {
-    background: colors.sky[200],
+    background: 'sky.500',
   },
 };
 
