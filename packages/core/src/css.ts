@@ -9,15 +9,14 @@ export const getCss =
     for (let key of Object.keys(style)) {
       let transform;
 
-      if (keyIsPseudoSelector(key)) {
+      if (key in configs) {
         transform = configs[key as keyof typeof configs];
+      }
+
+      if (keyIsPseudoSelector(key)) {
         style[pseudoSelector[key]] = style[key];
         delete style[key];
         key = pseudoSelector[key];
-      }
-
-      if (key in configs) {
-        transform = configs[key as keyof typeof configs];
       }
 
       if (transform) {
