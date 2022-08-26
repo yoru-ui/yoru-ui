@@ -76,6 +76,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "@yoru-ui/themes": "workspace:*"
   }
 }
