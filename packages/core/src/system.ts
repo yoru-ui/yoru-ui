@@ -1,7 +1,7 @@
-import emotionStyled, { FunctionInterpolation } from '@emotion/styled';
-import { runIfFN } from '@yoru-ui/utils/src/function';
-import { getCss } from './css';
+import type { FunctionInterpolation } from '@emotion/styled';
 import type { PseudoProperties } from './pseudo';
+import type { Config } from './configs';
+import { styled } from './styled';
 
 type DOMElements = keyof JSX.IntrinsicElements;
 
@@ -11,7 +11,7 @@ export type YoruStyleProperties = React.CSSProperties & PseudoProperties & Recor
 
 type MergeInterface<FirstInterface, SecondInterface> = FirstInterface & SecondInterface;
 
-type YoruComponent = {
+export type YoruComponent = {
   <ComponentProperties extends keyof JSX.IntrinsicElements>(
     props: MergeInterface<React.ComponentProps<ComponentProperties>, StyleResolverProps>,
   ): JSX.Element;
@@ -21,12 +21,13 @@ export type HTMLYoruElements = {
   [Tag in DOMElements]: YoruComponent;
 };
 
-type StyleResolverProps = {
+export interface StyleResolverProps
+  extends Partial<Record<keyof Config, string | YoruStyleProperties>> {
   __style?: YoruStyleProperties;
   theme?: Theme;
-};
+}
 
-interface GetStyleObject {
+export interface GetStyleObject {
   (
     options: React.CSSProperties | ((props: StyleResolverProps) => React.CSSProperties),
   ): FunctionInterpolation<StyleResolverProps>;
@@ -35,19 +36,6 @@ interface GetStyleObject {
 export type YoruStyledOptions =
   | React.CSSProperties
   | ((props: StyleResolverProps) => React.CSSProperties);
-
-const getStyleObject: GetStyleObject = (): FunctionInterpolation<StyleResolverProps> =>
-  (props => {
-    const { __style = {}, theme = {} } = props;
-    const resolveIsFunction = runIfFN(__style);
-    const style = getCss(resolveIsFunction)(theme);
-    return style;
-  }) as FunctionInterpolation<StyleResolverProps>;
-
-const styled = <T extends React.ElementType<any>>(component: T): YoruComponent => {
-  const cssObject = getStyleObject({});
-  return emotionStyled(component as React.ComponentType<any>, {})(cssObject) as YoruComponent;
-};
 
 const factory = () => {
   const cacheElement = new Map<DOMElements, YoruComponent>();
