@@ -2,19 +2,28 @@ import theme, { setTheme as setYoruTheme, ThemeContext, getTheme, ThemeVariant }
 import { ThemeConfigProperties, VariantsProperties } from '../types';
 import { resolverStyleConfig } from '../utils/styled-config';
 import { useContext, useEffect, useState } from 'react';
+import { useTheme as GetTheme } from '@emotion/react';
 
-export const useGetThemes = (themeKey: string) => {
+export const useGetThemes = (componentKey: string) => {
   const { components } = theme;
-  const themeStyleConfig = components[themeKey] as ThemeConfigProperties;
+  const themeStyleConfig = components[componentKey] as ThemeConfigProperties;
   const getStyle = resolverStyleConfig(themeStyleConfig);
   return getStyle;
 };
 
-export const useGetColorScheme = (themeKey: string, variantKey: string) => {
-  const Component = useGetThemes(themeKey);
+export const useGetColorScheme = (componentKey: string, variantKey: string) => {
+  const Component = useGetThemes(componentKey);
   const { variants } = Component;
   const variant = variants[variantKey] as VariantsProperties;
-  return variant;
+  const theme = GetTheme();
+  return variant(theme);
+};
+
+export const useGetSizes = (componentKey: string, sizeKey: string) => {
+  const Component = useGetThemes(componentKey);
+  const { sizes } = Component;
+  const size = sizes[sizeKey] as VariantsProperties;
+  return size;
 };
 
 export const useTheme = () => {
@@ -26,11 +35,4 @@ export const useTheme = () => {
   }, [theme]);
 
   return { theme, setTheme };
-};
-
-export const useGetSizes = (themeKey: string, sizeKey: string) => {
-  const Component = useGetThemes(themeKey);
-  const { sizes } = Component;
-  const size = sizes[sizeKey] as VariantsProperties;
-  return size;
 };
