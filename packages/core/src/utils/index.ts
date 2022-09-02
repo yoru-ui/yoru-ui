@@ -28,7 +28,6 @@ const transformCSS =
       });
       return css;
     }
-
     const _value = tokenToCSSVar(token, value)(theme);
 
     return _value;
@@ -37,4 +36,5 @@ const transformCSS =
 export const transformConfig: TransformConfig = {
   color: transformCSS('colors'),
   pseudo: transformCSS('pseudo'),
+  shadows: transformCSS('shadows'),
 };

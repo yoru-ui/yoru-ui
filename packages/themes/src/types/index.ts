@@ -1,3 +1,5 @@
+import { YoruStyleProperties } from '@yoru-ui/core';
+
 export type Dictionary<T = any> = Record<string, T>;
 
 export type ThemeConfigProperties = {
@@ -6,4 +8,4 @@ export type ThemeConfigProperties = {
   sizes?: Dictionary;
 };
 
-export type VariantsProperties = React.CSSProperties;
+export type VariantsProperties = (props: any) => YoruStyleProperties;

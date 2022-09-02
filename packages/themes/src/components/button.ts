@@ -1,5 +1,3 @@
-import { colors } from '../foundations/colors';
-
 const baseStyle: React.CSSProperties = {
   display: 'inline-flex',
   alignItems: 'center',
@@ -14,53 +12,59 @@ const baseStyle: React.CSSProperties = {
   padding: '4px 15px',
   height: 32,
   fontSize: 14,
-  boxShadow: '0 2px #00000004',
+  boxShadow: 'sm',
   border: '1px solid transparent',
 };
 
-const defaultVariants = {
-  backgroundColor: colors.gray[200],
-  color: `${colors.gray[900]}`,
-  outline: {
-    backgroundColor: colors.transparent,
-    borderColor: colors.gray[500],
-    color: colors.gray[900],
-  },
-  _hover: {
-    background: colors.gray[300],
-  },
+const defaultVariants = () => {
+  return {
+    backgroundColor: 'gray.200',
+    color: 'gray.900',
+    outline: {
+      backgroundColor: 'transparent',
+      borderColor: 'gray.500',
+      color: 'gray.900',
+    },
+    _hover: {
+      background: 'gray.300',
+    },
+  };
 };
 
 const primaryVariants = () => {
   return {
-    backgroundColor: colors.sky[500],
+    backgroundColor: 'sky.500',
     color: 'white',
+    _hover: {
+      background: 'sky.600',
+    },
+  };
+};
+
+const secondaryVariants = () => {
+  return {
+    backgroundColor: 'sky.100',
+    color: 'sky.500',
     _hover: {
       background: 'sky.200',
     },
   };
 };
 
-const secondaryVariants = {
-  backgroundColor: colors.sky[100],
-  color: 'sky.500',
-  _hover: {
-    background: 'sky.200',
-  },
-};
-
-const dangerVariants = {
-  backgroundColor: colors.red[500],
-  color: colors.white,
-  _hover: {
-    background: 'red.600',
-  },
+const dangerVariants = () => {
+  return {
+    backgroundColor: 'red.500',
+    color: 'white',
+    _hover: {
+      background: 'red.600',
+    },
+  };
 };
 
 // varians button
 const variants = {
   default: defaultVariants,
-  primary: primaryVariants(),
+  primary: primaryVariants,
   secondary: secondaryVariants,
   danger: dangerVariants,
 };
