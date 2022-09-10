@@ -1,33 +1,39 @@
 import React from 'react';
 import { yoru } from '@yoru-ui/core';
-import { useGetThemes, useGetColorScheme, useGetSizes } from '@yoru-ui/themes';
+import { useResolvedThemes } from '@yoru-ui/themes';
 
-export interface ButtonDefaultProps {
-  variant?: 'solid' | 'outline' | 'ghost' | 'link';
+type ButtonThemeProps = {
+  variants?: 'solid' | 'outline' | 'ghost' | 'link';
   colorScheme?: 'default' | 'primary' | 'secondary' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  sizes?: 'sm' | 'md' | 'lg';
+};
+export interface ButtonDefaultProps extends ButtonThemeProps {
   block?: boolean;
   className?: string;
   children?: React.ReactNode;
 }
 
 export const Button: React.FC<ButtonDefaultProps> = props => {
-  const { colorScheme = 'default', size = 'md', block = false, className, children } = props;
+  const {
+    colorScheme = 'default',
+    sizes = 'md',
+    block = false,
+    variants = 'solid',
+    className,
+    children,
+  } = props;
 
-  // controll button baseStyle
-  const styledButton = useGetThemes('Button');
+  const ButtonTheme: ButtonThemeProps = {
+    colorScheme,
+    sizes,
+    variants,
+  };
 
-  // controll button colorscheme
-  const buttonColors = useGetColorScheme('Button', colorScheme);
-
-  // controll button size
-  const buttonSize = useGetSizes('Button', size);
+  const buttonStyled = useResolvedThemes('Button', ButtonTheme as any);
 
   const buttonStyles = () => {
     return {
-      ...styledButton.baseStyle,
-      ...buttonColors,
-      ...buttonSize,
+      ...buttonStyled,
       width: block ? '100%' : 'auto',
     };
   };

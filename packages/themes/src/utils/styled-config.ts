@@ -6,13 +6,15 @@ import { ThemeConfigProperties } from '../types';
  * @returns
  */
 export const resolverStyleConfig = (config: ThemeConfigProperties) => {
-  const { baseStyle, variants, sizes } = config;
+  const { baseStyle, colorScheme, sizes, variants } = config;
   const resolvedBaseStyle = baseStyle ? baseStyle : {};
-  const resolvedVariants = variants ? variants : {};
+  const resolvedColorScheme = colorScheme ? colorScheme : {};
   const resolvedSizes = sizes ? sizes : {};
+  const resolvedVariants = variants ? variants : {};
   return {
     baseStyle: resolvedBaseStyle,
-    variants: resolvedVariants,
+    colorScheme: resolvedColorScheme,
     sizes: resolvedSizes,
+    variants: resolvedVariants,
   };
 };

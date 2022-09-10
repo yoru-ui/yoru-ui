@@ -22,7 +22,7 @@ Basic.argTypes = {
       type: 'select',
     },
   },
-  size: {
+  sizes: {
     options: ['sm', 'md', 'lg'],
     control: {
       type: 'select',
@@ -31,12 +31,18 @@ Basic.argTypes = {
   block: {
     control: 'boolean',
   },
+  variants: {
+    options: ['solid', 'outline', 'ghost', 'link'],
+    control: {
+      type: 'select',
+    },
+  },
 };
 
 Basic.args = {
   children: 'Button',
   colorScheme: 'default',
-  size: 'md',
+  sizes: 'md',
   block: false,
 };
 
