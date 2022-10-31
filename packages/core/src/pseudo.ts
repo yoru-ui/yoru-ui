@@ -7,6 +7,10 @@ export const pseudoSelector = {
    * Styles for CSS selector `&:focus`
    */
   _focus: '&:focus, &[data-focus]',
+  /**
+   * Styles for CSS input placeholder `&::placeholder`
+   */
+  _placeholder: '&::placeholder',
 };
 
 export type Pseudo = typeof pseudoSelector;
