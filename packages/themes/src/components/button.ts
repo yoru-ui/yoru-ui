@@ -1,4 +1,6 @@
-const baseStyle: React.CSSProperties = {
+import { YoruStyleProperties } from '@yoru-ui/core';
+
+const baseStyle: YoruStyleProperties = {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -51,18 +53,16 @@ const secondaryVariants = () => {
   };
 };
 
-const dangerVariants = () => {
-  return {
-    backgroundColor: 'red.500',
-    color: 'white',
-    _hover: {
-      background: 'red.600',
-    },
-  };
+const dangerVariants = {
+  backgroundColor: 'red.500',
+  color: 'white',
+  _hover: {
+    background: 'red.600',
+  },
 };
 
 // varians button
-const variants = {
+const colorScheme = {
   default: defaultVariants,
   primary: primaryVariants,
   secondary: secondaryVariants,
@@ -71,26 +71,25 @@ const variants = {
 
 // size button
 const sizes = {
-  // https://tailwindcss.com/docs/font-size
   sm: {
     height: '1.5rem',
-    fontSize: '0.75rem', // todo: make it dynamic we can use sm, md, lg, xl
+    fontSize: '0.75rem',
     padding: '0.25rem 0.75rem',
   },
   md: {
     height: '2rem',
-    fontSize: '0.875rem', // todo: make it dynamic we can use sm, md, lg, xl
+    fontSize: '0.875rem',
     padding: '0.25rem 1rem',
   },
   lg: {
     height: '2.5rem',
-    fontSize: '1rem', // todo: make it dynamic we can use sm, md, lg, xl
+    fontSize: '1rem',
     padding: '0.5rem 1.5rem',
   },
 };
 
 export default {
   baseStyle,
-  variants,
+  colorScheme,
   sizes,
 };

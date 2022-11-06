@@ -6,6 +6,7 @@ export type ThemeConfigProperties = {
   baseStyle?: Dictionary;
   variants?: Dictionary;
   sizes?: Dictionary;
+  colorScheme?: Dictionary;
 };
 
 export type VariantsProperties = (props: any) => YoruStyleProperties;
