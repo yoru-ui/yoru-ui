@@ -1,26 +1,29 @@
 import { ThemeProvider, Theme, ThemeProviderProps, Global } from '@emotion/react';
 import { mergeWith } from '@yoru-ui/utils';
-import React, { createContext, useEffect } from 'react';
+import React, { createContext, useEffect, useState, useMemo } from 'react';
 import { yoruCSSVars } from '@yoru-ui/core';
 import cssVars from './foundations';
 
 export type YoruTheme = Partial<Theme> | ((outherTheme: Theme) => Theme);
 
-export type ThemeVariant = 'light' | 'dark';
+export type ThemeVariant = 'light' | 'dark' | 'system';
 
 type ThemeConfig = {
   initialColorMode: ThemeVariant;
   useSystemColorMode?: boolean;
 };
 
-export const ThemeContext = createContext<ThemeVariant | null>(null);
+export const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export const EmotionThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   children,
   theme,
 }): React.ReactElement => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 
-type ThemeContextValue = ThemeVariant | 'system';
+export type ThemeContextValue = {
+  theme: ThemeVariant;
+  setTheme: (theme: ThemeVariant) => void;
+};
 
 export const YoruProvider: React.FunctionComponent<{
   children: React.ReactNode;
@@ -28,13 +31,24 @@ export const YoruProvider: React.FunctionComponent<{
   theme: ThemeProviderProps['theme'];
 }> = ({ children, config, theme }): React.ReactElement => {
   const { initialColorMode, useSystemColorMode } = config;
+  const [value, setValue] = useState<ThemeVariant | 'system'>(
+    useSystemColorMode ? 'system' : getTheme(initialColorMode),
+  );
+
+  const memoizedTheme = useMemo(
+    () => ({
+      theme: value,
+      setTheme: setValue,
+    }),
+    [value],
+  );
 
   useEffect(() => {
-    setTheme(useSystemColorMode ? 'system' : getTheme(initialColorMode));
-  });
+    setTheme(value);
+  }, [value]);
 
   return (
-    <ThemeContext.Provider value={initialColorMode}>
+    <ThemeContext.Provider value={memoizedTheme}>
       <EmotionThemeProvider theme={{ ...yoruCSSVars(mergeWith(cssVars, theme)) }}>
         <CSSVar />
         {children}
@@ -52,7 +66,7 @@ const CSSVar: React.FunctionComponent<{ root?: string }> = ({ root = ':host, :ro
  * Set the theme based on the color mode
  * @param defaultValue @type {ThemeVariant}
  */
-export const setTheme = (value: ThemeContextValue): ThemeVariant => {
+export const setTheme = (value: ThemeVariant): ThemeVariant => {
   const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   const _value = value === 'system' ? system : value;
 
