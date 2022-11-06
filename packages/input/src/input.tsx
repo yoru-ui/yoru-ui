@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { yoru } from '@yoru-ui/core';
-import { useGetColorScheme, useGetThemes } from '@yoru-ui/themes';
+import { useResolvedThemes } from '@yoru-ui/themes';
 
 type BaseInputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -19,8 +19,7 @@ export const Input: React.FC<InputProperties> = ({
   onChange,
   ...restProperties
 }) => {
-  const styledInput = useGetThemes('Input');
-  const inputVariant = useGetColorScheme('Input', 'default');
+  const styledInput = useResolvedThemes('Input', { variants: 'default' });
 
   useEffect(() => {
     if (prefix || suffix) {
@@ -62,8 +61,7 @@ export const Input: React.FC<InputProperties> = ({
         <yoru.input
           className="yoru-input"
           __style={{
-            ...inputVariant,
-            ...styledInput.baseStyle,
+            ...styledInput,
           }}
           onChange={onChange}
           {...restProperties}
@@ -76,7 +74,7 @@ export const Input: React.FC<InputProperties> = ({
     <yoru.input
       className="yoru-input"
       onChange={onChange}
-      __style={{ ...styledInput.baseStyle }}
+      __style={{ ...styledInput }}
       {...restProperties}
     ></yoru.input>
   );
