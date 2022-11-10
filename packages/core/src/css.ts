@@ -13,6 +13,10 @@ export const getCss =
         transform = configs[key as keyof typeof configs];
       }
 
+      if (isObject(style[key]) && !transform) {
+        transform = configs['default'];
+      }
+
       if (keyIsPseudoSelector(key)) {
         style[pseudoSelector[key]] = style[key];
         delete style[key];
