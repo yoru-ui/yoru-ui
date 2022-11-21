@@ -19,8 +19,13 @@ const transformCSS =
      */
     if (typeof value === 'object') {
       Object.entries(value).forEach(([pseudo, _value]: [string, string | YoruStyleProperties]) => {
-        const transform =
+        let transform =
           pseudo in configs ? configs[pseudo as keyof typeof configs](theme, _value) : _value;
+
+        if (typeof transform === 'object') {
+          transform = configs['object'](theme, _value);
+        }
+
         css = {
           ...css,
           [pseudoSelector[pseudo as keyof Pseudo] ?? pseudo]: runIfFN(transform),
