@@ -12,7 +12,6 @@ export const useResolvedThemes = (componentKey: string, props: ThemeStylePropert
   const { components } = baseTheme;
   const themeStyleConfig = components[componentKey] as ThemeConfigProperties;
   const getStyle = resolverStyleConfig(themeStyleConfig);
-
   // selector for get all baseStyle from theme
   const getBaseStyled = getStyle.baseStyle;
   // selector for get all colorScheme from theme
