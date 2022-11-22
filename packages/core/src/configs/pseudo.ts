@@ -3,13 +3,13 @@ import { Pseudo, pseudoSelector } from '../pseudo';
 
 let pseudoTransformer: Record<string, Transform> = {};
 
-Object.keys({ ...pseudoSelector, default: '' }).map(selector => {
+Object.keys({ ...pseudoSelector, object: '' }).map(selector => {
   pseudoTransformer = {
     ...pseudoTransformer,
     [selector]: transformConfig['pseudo'],
   };
 });
 
-type PseudoWithDefault = Pseudo & { default: string };
+type PseudoWithObject = Pseudo & { object: string };
 
-export default pseudoTransformer as Record<keyof PseudoWithDefault, Transform>;
+export default pseudoTransformer as Record<keyof PseudoWithObject, Transform>;

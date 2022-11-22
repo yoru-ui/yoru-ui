@@ -3,7 +3,15 @@ import { ThemeConfigProperties, ThemeStyleProperties } from '../types';
 import { resolverStyleConfig } from '../utils/styled-config';
 import { useContext } from 'react';
 import { useTheme as GetTheme } from '@emotion/react';
-import { runIfFN } from '@yoru-ui/utils';
+import { mergeWith, runIfFN } from '@yoru-ui/utils';
+
+const mergeResolvedThemes = (obj1: any, obj2: any, ...args: any[]): any => {
+  const result = mergeWith(obj1, obj2);
+  if (args.length > 0) {
+    return mergeResolvedThemes(result, args[0], ...args.slice(1, args.length));
+  }
+  return result;
+};
 
 export const useResolvedThemes = (componentKey: string, props: ThemeStyleProperties) => {
   const { colorScheme, sizes, variants } = props;
@@ -24,12 +32,7 @@ export const useResolvedThemes = (componentKey: string, props: ThemeStylePropert
   const getVariants =
     variants && runIfFN(getStyle.variants[variants], { ...props, colorMode: theme });
 
-  return {
-    ...getBaseStyled,
-    ...getColorScheme,
-    ...getSizes,
-    ...getVariants,
-  };
+  return mergeResolvedThemes(getBaseStyled, getColorScheme, getSizes, getVariants);
 };
 
 export const useTheme = () => {

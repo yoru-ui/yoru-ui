@@ -14,7 +14,7 @@ export const getCss =
       }
 
       if (isObject(style[key]) && !transform) {
-        transform = configs['default'];
+        transform = configs['object'];
       }
 
       if (keyIsPseudoSelector(key)) {

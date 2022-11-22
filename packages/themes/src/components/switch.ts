@@ -44,18 +44,14 @@ const sizes = {
     width: '28px',
     height: '16px',
     '& input': {
-      ...baseStyle['& input'],
       '&:checked + .switch:before': {
-        ...baseStyle['& input']['&:checked + .switch:before'],
         WebkitTransform: 'translateX(12px)',
         MsTransform: 'translateX(12px)',
         transform: 'translateX(12px)',
       },
     },
     '& .switch': {
-      ...baseStyle['& .switch'],
       '&:before': {
-        ...baseStyle['& .switch']['&:before'],
         width: '10px',
         height: '10px',
         bottom: '3px',
@@ -67,18 +63,14 @@ const sizes = {
     width: '40px',
     height: '24px',
     '& input': {
-      ...baseStyle['& input'],
       '&:checked + .switch:before': {
-        ...baseStyle['& input']['&:checked + .switch:before'],
         WebkitTransform: 'translateX(16px)',
         MsTransform: 'translateX(16px)',
         transform: 'translateX(16px)',
       },
     },
     '& .switch': {
-      ...baseStyle['& .switch'],
       '&:before': {
-        ...baseStyle['& .switch']['&:before'],
         width: '18px',
         height: '18px',
         bottom: '3px',
