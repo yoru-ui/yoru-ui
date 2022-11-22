@@ -8,6 +8,7 @@ export interface CheckboxProperties {
   label?: string;
   checked?: boolean;
   sizes?: 'sm' | 'md' | 'lg';
+  indeterminate?: boolean;
   onChange?: (checked?: boolean) => void;
 }
 
@@ -15,9 +16,11 @@ export const Checkbox: React.FC<CheckboxProperties> = ({
   label,
   checked = false,
   sizes = 'md',
+  indeterminate = false,
   onChange = () => {},
 }) => {
-  const styledCheckbox = useResolvedThemes('Checkbox', { sizes: sizes });
+  const variants = indeterminate ? 'indeterminate' : 'default';
+  const styledCheckbox = useResolvedThemes('Checkbox', { sizes: sizes, variants });
 
   return (
     <yoru.label __style={styledCheckbox} className="yoru-checkbox">

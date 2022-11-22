@@ -1,4 +1,5 @@
 import { YoruStyleProperties } from '@yoru-ui/core';
+import { ThemeStyleProperties } from '../types';
 
 const baseStyle: YoruStyleProperties = {
   position: 'relative',
@@ -80,7 +81,29 @@ const sizes = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const indeterminateVariant = (_props: ThemeStyleProperties) => {
+  return {
+    '& > input.checkbox': {
+      '&:checked + .checkbox-box': {
+        '&:after': {
+          transform: 'translate(-50%, -40%)',
+          height: '1px',
+          borderWidth: '0px',
+          borderTopWidth: '3px',
+          width: '50%',
+        },
+      },
+    },
+  };
+};
+
+const variants = {
+  indeterminate: indeterminateVariant,
+};
+
 export default {
   baseStyle,
+  variants,
   sizes,
 };

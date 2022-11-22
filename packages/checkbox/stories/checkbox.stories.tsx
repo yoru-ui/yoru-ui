@@ -27,4 +27,5 @@ Basic.argTypes = {
 Basic.args = {
   label: 'I agree to terms and condition',
   checked: true,
+  indeterminate: false,
 };
