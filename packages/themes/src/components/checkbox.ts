@@ -49,16 +49,12 @@ const sizes = {
   sm: {
     paddingLeft: '10px',
     '& > .checkbox-box': {
-      ...baseStyle['& > .checkbox-box'],
       width: '0.75rem',
       height: '0.75rem',
     },
     '& > input.checkbox': {
-      ...baseStyle['& > input.checkbox'],
       '&:checked + .checkbox-box': {
-        ...baseStyle['& > input.checkbox']['&:checked + .checkbox-box'],
         '&:after': {
-          ...baseStyle['& > input.checkbox']['&:checked + .checkbox-box']['&:after'],
           borderWidth: '0 2px 2px 0',
           width: '1.5px',
           height: '5px',
@@ -70,16 +66,12 @@ const sizes = {
   lg: {
     paddingLeft: '20px',
     '& > .checkbox-box': {
-      ...baseStyle['& > .checkbox-box'],
       width: '1.25rem',
       height: '1.25rem',
     },
     '& > input.checkbox': {
-      ...baseStyle['& > input.checkbox'],
       '&:checked + .checkbox-box': {
-        ...baseStyle['& > input.checkbox']['&:checked + .checkbox-box'],
         '&:after': {
-          ...baseStyle['& > input.checkbox']['&:checked + .checkbox-box']['&:after'],
           borderWidth: '0 3px 3px 0',
           width: '4px',
         },
