@@ -1,5 +1,4 @@
 import { YoruStyleProperties } from '@yoru-ui/core';
-import { ThemeStyleProperties } from '../types';
 import { mode } from '../utils/theme-utils';
 
 const baseStyle: YoruStyleProperties = {
@@ -22,7 +21,7 @@ const baseStyle: YoruStyleProperties = {
   },
 };
 
-const defaultVariants = (props: ThemeStyleProperties) => {
+const defaultVariants = (props: any) => {
   return {
     width: '100%',
     _placeholder: {

@@ -19,8 +19,8 @@ export const Checkbox: React.FC<CheckboxProperties> = ({
   indeterminate = false,
   onChange = () => {},
 }) => {
-  const variants = indeterminate ? 'indeterminate' : 'default';
-  const styledCheckbox = useResolvedThemes('Checkbox', { sizes: sizes, variants });
+  const variants = indeterminate ? 'indeterminate' : undefined;
+  const styledCheckbox = useResolvedThemes('Checkbox', { sizes, variants });
 
   return (
     <yoru.label __style={styledCheckbox} className="yoru-checkbox">

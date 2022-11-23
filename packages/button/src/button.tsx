@@ -14,22 +14,9 @@ export interface ButtonDefaultProps extends ButtonThemeProps {
 }
 
 export const Button: React.FC<ButtonDefaultProps> = props => {
-  const {
-    colorScheme = 'default',
-    sizes = 'md',
-    block = false,
-    variants = 'solid',
-    className,
-    children,
-  } = props;
+  const { colorScheme = 'default', sizes = 'md', block = false, className, children } = props;
 
-  const ButtonTheme: ButtonThemeProps = {
-    colorScheme,
-    sizes,
-    variants,
-  };
-
-  const buttonStyled = useResolvedThemes('Button', ButtonTheme as any);
+  const buttonStyled = useResolvedThemes('Button', { colorScheme, sizes });
 
   const buttonStyles = () => {
     return {

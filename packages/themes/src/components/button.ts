@@ -53,12 +53,14 @@ const secondaryVariants = () => {
   };
 };
 
-const dangerVariants = {
-  backgroundColor: 'red.500',
-  color: 'white',
-  _hover: {
-    background: 'red.600',
-  },
+const dangerVariants = () => {
+  return {
+    backgroundColor: 'red.500',
+    color: 'white',
+    _hover: {
+      background: 'red.600',
+    },
+  };
 };
 
 // varians button

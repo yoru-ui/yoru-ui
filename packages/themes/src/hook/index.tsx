@@ -1,9 +1,9 @@
 import baseTheme, { ThemeContext, ThemeContextValue } from '..';
-import { ThemeConfigProperties, ThemeStyleProperties } from '../types';
-import { resolverStyleConfig } from '../utils/styled-config';
+import { ThemeStyleProperties } from '../types';
 import { useContext } from 'react';
-import { useTheme as GetTheme } from '@emotion/react';
+// import { useTheme as GetTheme } from '@emotion/react';
 import { mergeWith, runIfFN } from '@yoru-ui/utils';
+import { ComponentNames, ComponentType } from '../components';
 
 const mergeResolvedThemes = (obj1: any, obj2: any, ...args: any[]): any => {
   const result = mergeWith(obj1, obj2);
@@ -13,24 +13,34 @@ const mergeResolvedThemes = (obj1: any, obj2: any, ...args: any[]): any => {
   return result;
 };
 
-export const useResolvedThemes = (componentKey: string, props: ThemeStyleProperties) => {
+export const useResolvedThemes = <T extends ComponentNames>(
+  componentKey: T,
+  props: ThemeStyleProperties<T>,
+) => {
   const { colorScheme, sizes, variants } = props;
-  const yoruThemes = GetTheme();
+  // const yoruThemes = GetTheme();
   const { theme } = useTheme();
   const { components } = baseTheme;
-  const themeStyleConfig = components[componentKey] as ThemeConfigProperties;
-  const getStyle = resolverStyleConfig(themeStyleConfig);
+  const themeStyleConfig = components[componentKey] as ComponentType<T>;
   // selector for get all baseStyle from theme
-  const getBaseStyled = getStyle.baseStyle;
+  const getBaseStyled = themeStyleConfig.baseStyle;
   // selector for get all colorScheme from theme
-  const colorSchemes = colorScheme && getStyle.colorScheme[colorScheme];
-  const getColorScheme =
-    typeof colorSchemes === 'function' ? colorSchemes(yoruThemes) : colorSchemes;
+  const colorSchemes =
+    colorScheme && themeStyleConfig.colorScheme && themeStyleConfig.colorScheme[colorScheme];
+  const getColorScheme = typeof colorSchemes === 'function' ? colorSchemes() : colorSchemes;
   // selector for get all size from theme
-  const getSizes = sizes && getStyle.sizes[sizes];
+  const getSizes =
+    sizes &&
+    themeStyleConfig.sizes &&
+    themeStyleConfig.sizes[sizes as keyof typeof themeStyleConfig.sizes];
   // selector for get all variants from theme
   const getVariants =
-    variants && runIfFN(getStyle.variants[variants], { ...props, colorMode: theme });
+    variants &&
+    themeStyleConfig.variants &&
+    runIfFN(themeStyleConfig.variants[variants as keyof typeof themeStyleConfig.variants], {
+      ...props,
+      colorMode: theme,
+    });
 
   return mergeResolvedThemes(getBaseStyled, getColorScheme, getSizes, getVariants);
 };
