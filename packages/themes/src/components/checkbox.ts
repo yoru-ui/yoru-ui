@@ -1,5 +1,4 @@
 import { YoruStyleProperties } from '@yoru-ui/core';
-import { ThemeStyleProperties } from '../types';
 
 const baseStyle: YoruStyleProperties = {
   position: 'relative',
@@ -82,7 +81,7 @@ const sizes = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const indeterminateVariant = (_props: ThemeStyleProperties) => {
+const indeterminateVariant = () => {
   return {
     '& > input.checkbox': {
       '&:checked + .checkbox-box': {
@@ -97,6 +96,8 @@ const indeterminateVariant = (_props: ThemeStyleProperties) => {
     },
   };
 };
+
+// const colorScheme = {};
 
 const variants = {
   indeterminate: indeterminateVariant,
