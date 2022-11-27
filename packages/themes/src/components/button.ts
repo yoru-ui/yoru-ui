@@ -1,4 +1,13 @@
 import { YoruStyleProperties } from '@yoru-ui/core';
+import { runIfFN } from '@yoru-ui/utils';
+import { mode } from '../utils/theme-utils';
+
+type AccessibleColor = {
+  bg?: string;
+  color?: string;
+  hoverBg?: string;
+  activeBg?: string;
+};
 
 const baseStyle: YoruStyleProperties = {
   display: 'inline-flex',
@@ -6,7 +15,7 @@ const baseStyle: YoruStyleProperties = {
   justifyContent: 'center',
   lineHeight: '1.2',
   borderRadius: '0.25rem',
-  fontWeight: '500',
+  fontWeight: '600',
   whiteSpace: 'nowrap',
   textAlign: 'center',
   cursor: 'pointer',
@@ -15,60 +24,151 @@ const baseStyle: YoruStyleProperties = {
   height: 32,
   fontSize: 14,
   boxShadow: 'sm',
+  fontFamily: 'arial',
   border: '1px solid transparent',
+  '&:disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+    boxShadow: 'none',
+    borderColor: 'gray.100',
+  },
+  '&:hover': {
+    '&:disabled': {
+      background: 'initial',
+    },
+  },
+
+  svg: {
+    stroke: 'currentColor',
+  },
 };
 
-const defaultVariants = () => {
+const variantGhost = (props: any) => {
+  const { colorScheme: c } = props;
+
+  const cScheme = String(c) || '';
+
+  if (c === '' || c === undefined) {
+    return {
+      background: 'transparent',
+      boxShadow: 'unset',
+      color: mode(`gray.500`, `slate.900`)(props),
+      '&:hover': {
+        background: mode(`gray.100`, `slate.200`)(props),
+      },
+      '&:active': { background: mode(`gray.200`, `slate.300`)(props) },
+    };
+  }
+
   return {
-    backgroundColor: 'gray.200',
-    color: 'gray.900',
-    outline: {
-      backgroundColor: 'transparent',
-      borderColor: 'gray.500',
-      color: 'gray.900',
+    color: mode(`${cScheme}.500`, `${cScheme}.900`)(props),
+    background: 'transparent',
+    boxShadow: 'unset',
+    '&:hover': {
+      background: mode(`${cScheme}.50`, `${cScheme}.200`)(props),
     },
-    _hover: {
-      background: 'gray.300',
+    '&:active': {
+      background: mode(`${cScheme}.100`, `${cScheme}.300`)(props),
     },
   };
 };
 
-const primaryVariants = () => {
+const outlineVariant = (props: any) => {
   return {
-    backgroundColor: 'sky.500',
-    color: 'white',
-    _hover: {
-      background: 'sky.600',
-    },
+    border: '1px solid',
+    borderColor: 'currentColor',
+    ...runIfFN(variantGhost, props),
   };
 };
 
-const secondaryVariants = () => {
+/** Accessible color overrides for less accessible colors. */
+const accessibleColorMap: { [key: string]: AccessibleColor } = {
+  yellow: {
+    bg: 'yellow.400',
+    color: 'black',
+    hoverBg: 'yellow.500',
+    activeBg: 'yellow.600',
+  },
+  cyan: {
+    bg: 'cyan.400',
+    color: 'black',
+    hoverBg: 'cyan.500',
+    activeBg: 'cyan.600',
+  },
+};
+
+const solidVariant = (props: any) => {
+  const { colorScheme: c } = props;
+
+  const cScheme = String(c) || '';
+
+  if (c === '') {
+    const bg = mode(`gray.100`, `slate.200`)(props);
+
+    return {
+      background: bg,
+      '&:hover': {
+        background: mode(`gray.200`, `slate.300`)(props),
+        '&:disabled': {
+          background: bg,
+        },
+      },
+      '&:active': { background: mode(`gray.300`, `slate.400`)(props) },
+    };
+  }
+
+  const {
+    bg = `${cScheme}.500`,
+    color = 'white',
+    hoverBg = `${cScheme}.600`,
+    activeBg = `${cScheme}.700`,
+  } = accessibleColorMap[c] ?? {};
+
+  const background = mode(bg, `${cScheme}.200`)(props);
+
   return {
-    backgroundColor: 'sky.100',
-    color: 'sky.500',
-    _hover: {
-      background: 'sky.200',
+    background: background,
+    color: mode(color, `gray.800`)(props),
+    '&:hover': {
+      background: mode(hoverBg, `${cScheme}.300`)(props),
+      '&:disabled': {
+        background: background,
+      },
     },
+    '&:active': { background: mode(activeBg, `${cScheme}.400`)(props) },
   };
 };
 
-const dangerVariants = () => {
+const linkVariant = (props: any) => {
+  const { colorScheme: c } = props;
+  const cScheme = String(c) || '';
+
   return {
-    backgroundColor: 'red.500',
-    color: 'white',
-    _hover: {
-      background: 'red.600',
+    padding: 0,
+    height: 'auto',
+    lineHeight: 'normal',
+    verticalAlign: 'baseline',
+    boxShadow: 'unset',
+    background: 'transparent',
+    color: mode(`${cScheme}.500`, `${cScheme}.200`)(props),
+    '&:hover': {
+      textDecoration: 'underline',
+      '&:disabled': {
+        textDecoration: 'none',
+      },
+    },
+    '&:active': {
+      color: mode(`${cScheme}.700`, `${cScheme}.500`)(props),
     },
   };
 };
 
 // varians button
-const colorScheme = {
-  default: defaultVariants,
-  primary: primaryVariants,
-  secondary: secondaryVariants,
-  danger: dangerVariants,
+const variants = {
+  solid: solidVariant,
+  outline: outlineVariant,
+  link: linkVariant,
+  ghost: variantGhost,
 };
 
 // size button
@@ -92,6 +192,6 @@ const sizes = {
 
 export default {
   baseStyle,
-  colorScheme,
+  variants,
   sizes,
 };
