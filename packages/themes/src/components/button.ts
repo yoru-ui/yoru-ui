@@ -141,6 +141,7 @@ const solidVariant = (props: any) => {
 
 const linkVariant = (props: any) => {
   const { colorScheme: c } = props;
+  console.info(props);
   const cScheme = String(c) || '';
 
   return {

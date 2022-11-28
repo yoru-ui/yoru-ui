@@ -17,12 +17,12 @@ module.exports = function (plop) {
       {
         type: 'input',
         name: 'componentName',
-        message: 'Enter component please',
+        message: 'Enter component name please: ',
       },
       {
         type: 'input',
         name: 'author',
-        message: 'Enter author name please',
+        message: 'Enter author name please: ',
       },
     ],
     actions: [
