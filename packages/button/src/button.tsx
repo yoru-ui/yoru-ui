@@ -2,7 +2,7 @@ import React from 'react';
 import { yoru } from '@yoru-ui/core';
 import { useResolvedThemes } from '@yoru-ui/themes';
 import LoadingIcon from './LoadingIcon';
-import { AnchorButtonProps, ButtonProps, NativeButtonProps } from './button.interface';
+import { ButtonProps } from './button.interface';
 
 export const Button: React.FC<ButtonProps> = props => {
   const {
@@ -32,7 +32,11 @@ export const Button: React.FC<ButtonProps> = props => {
     width: block ? '100%' : 'auto',
   };
 
-  const iconType = loading ? <LoadingIcon /> : <yoru.div>{icon}</yoru.div>;
+  const iconType = loading ? (
+    <LoadingIcon />
+  ) : (
+    <yoru.div className="yoru-button__icon">{icon}</yoru.div>
+  );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => {
     const { onClick } = props;
@@ -61,32 +65,20 @@ export const Button: React.FC<ButtonProps> = props => {
     </yoru.div>
   );
 
-  if (variants === 'link') {
-    return (
-      <yoru.a
-        __style={styles}
-        className={classes('yoru-button', className)}
-        onClick={handleClick}
-        disabled={disabled || loading}
-        {...(rest as AnchorButtonProps)}
-      >
-        <ButtonContent />
-      </yoru.a>
-    );
-  }
+  const NodeButton = variants === 'link' ? yoru.a : yoru.button;
 
   return (
     <>
-      <yoru.button
-        type="button"
+      <NodeButton
+        type={variants === 'link' ? undefined : 'button'}
         __style={styles}
         className={classes('yoru-button', className)}
         onClick={handleClick}
         disabled={disabled || loading}
-        {...(rest as NativeButtonProps)}
+        {...rest}
       >
         <ButtonContent />
-      </yoru.button>
+      </NodeButton>
     </>
   );
 };

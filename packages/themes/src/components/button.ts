@@ -48,7 +48,7 @@ const variantGhost = (props: any) => {
 
   const cScheme = String(c) || '';
 
-  if (c === '' || c === undefined) {
+  if (cScheme === '' || cScheme === 'gray') {
     return {
       background: 'transparent',
       boxShadow: 'unset',
@@ -102,7 +102,7 @@ const solidVariant = (props: any) => {
 
   const cScheme = String(c) || '';
 
-  if (c === '') {
+  if (cScheme === '' || cScheme === 'gray') {
     const bg = mode(`gray.100`, `slate.200`)(props);
 
     return {
