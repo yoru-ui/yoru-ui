@@ -25,9 +25,7 @@ export const useResolvedThemes = <T extends ComponentNames>(
   // selector for get all baseStyle from theme
   const getBaseStyled = themeStyleConfig.baseStyle;
   // selector for get all colorScheme from theme
-  const colorSchemes =
-    colorScheme && themeStyleConfig.colorScheme && themeStyleConfig.colorScheme[colorScheme];
-  const getColorScheme = typeof colorSchemes === 'function' ? colorSchemes() : colorSchemes;
+  const getColorScheme = colorScheme && themeStyleConfig.colorScheme;
   // selector for get all size from theme
   const getSizes =
     sizes &&

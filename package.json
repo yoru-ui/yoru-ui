@@ -45,6 +45,7 @@
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
     "button": "^1.1.1",
@@ -75,8 +76,8 @@
     }
   },
   "devDependencies": {
+    "@yoru-ui/themes": "workspace:*",
     "eslint-config-prettier": "^8.5.0",
-    "husky": "^8.0.0",
-    "@yoru-ui/themes": "workspace:*"
+    "husky": "^8.0.0"
   }
 }

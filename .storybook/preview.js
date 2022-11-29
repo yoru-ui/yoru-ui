@@ -17,7 +17,7 @@ export const decorators = [
           xl: '4rem',
         },
       }}
-      config={{ initialColorMode: 'light', useSystemColorMode: true }}
+      config={{ initialColorMode: 'light', useSystemColorMode: false }}
     >
       <Story />
     </YoruProvider>

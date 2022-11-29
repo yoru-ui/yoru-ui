@@ -17,7 +17,10 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
 export const Basic = Template.bind({});
 Basic.argTypes = {
   colorScheme: {
-    options: ['default', 'primary', 'secondary', 'danger'],
+    type: 'string',
+  },
+  variants: {
+    options: ['solid', 'outline', 'ghost', 'link'],
     control: {
       type: 'select',
     },
@@ -31,8 +34,8 @@ Basic.argTypes = {
   block: {
     control: 'boolean',
   },
-  variants: {
-    options: ['solid', 'outline', 'ghost', 'link'],
+  iconPosition: {
+    options: ['left', 'right'],
     control: {
       type: 'select',
     },
@@ -40,21 +43,31 @@ Basic.argTypes = {
 };
 
 Basic.args = {
+  variants: 'solid',
   children: 'Button',
-  colorScheme: 'default',
+  colorScheme: 'pink',
   sizes: 'md',
   block: false,
+  loading: false,
+  disabled: false,
+  icon: '',
 };
 
-export const AllColorScheme = () => {
+export const AllVariant = () => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-      <Button colorScheme="default" className="sda sada">
+      <Button colorScheme="pink" variants="solid">
         Button
       </Button>
-      <Button colorScheme="primary">Button</Button>
-      <Button colorScheme="secondary">Button</Button>
-      <Button colorScheme="danger">Button</Button>
+      <Button colorScheme="pink" variants="outline">
+        Button
+      </Button>
+      <Button colorScheme="pink" variants="ghost" sizes="md">
+        Button
+      </Button>
+      <Button colorScheme="pink" variants="link">
+        Button
+      </Button>
     </div>
   );
 };
