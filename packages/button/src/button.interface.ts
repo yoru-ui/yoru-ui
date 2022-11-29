@@ -1,3 +1,5 @@
+import { ColorScheme } from '@yoru-ui/themes';
+
 export interface BaseButtonProps {
   // default html button props
   className?: string;
@@ -12,7 +14,7 @@ export interface BaseButtonProps {
    * a props to set button color & background color, the colorScheme get from theme foundation color
    * @default gray
    */
-  colorScheme?: string;
+  colorScheme?: ColorScheme;
   /**
    * a props to set button size
    * @default md

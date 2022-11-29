@@ -8,5 +8,6 @@ export type Theme = typeof theme;
 
 export * from './hook';
 export * from './theme';
+export * from './types';
 
 export default theme;
