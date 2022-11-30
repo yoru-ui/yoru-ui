@@ -14,10 +14,29 @@ const opacity = keyframes`
 `;
 
 const baseStyle: YoruStyleProperties = {
+  position: 'relative',
+  width: '100%',
+  '& .yoru-click-listener': {
+    transition: 'all .3s',
+    border: '1px solid',
+    borderColor: '#EDEDED',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    cursor: 'pointer',
+    borderRadius: 4,
+    _hover: {
+      borderColor: 'sky.500',
+    },
+  },
   '& .date-picker-overlay': {
     position: 'absolute',
     backgroundColor: 'white',
+    marginTop: '0.3em',
     width: '100%',
+    minWidth: '260px',
     maxWidth: '280px',
     zIndex: 100,
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
@@ -38,6 +57,12 @@ const baseStyle: YoruStyleProperties = {
       },
       '& p': {
         margin: 0,
+        '& span': {
+          cursor: 'pointer',
+          _hover: {
+            textDecoration: 'underline',
+          },
+        },
       },
     },
     '& .date-picker--weekdays': {
@@ -54,10 +79,17 @@ const baseStyle: YoruStyleProperties = {
       placeItems: 'center',
       justifyContent: 'center',
       alignItems: 'center',
+      '& > span.inactive': {
+        '& > span': {
+          fontSize: '0.7em',
+          color: 'gray.300',
+          cursor: 'not-allowed',
+        },
+      },
       '& > span:not(.inactive)': {
         cursor: 'pointer',
         margin: '0.2em',
-        '&:hover': {
+        _hover: {
           color: 'white',
           animation: `${opacity} 200ms ease-in-out`,
           '& > span': {
@@ -75,6 +107,14 @@ const baseStyle: YoruStyleProperties = {
           height: '24px',
           fontSize: '0.7em',
           textAlign: 'center',
+        },
+        '&.selected-date': {
+          margin: '0.2em',
+          '& > span': {
+            border: '1px solid',
+            borderColor: 'pink.500',
+            borderRadius: '50%',
+          },
         },
       },
     },

@@ -8,9 +8,14 @@ export default {
 } as ComponentMeta<typeof DatePicker>;
 
 const Template: ComponentStory<typeof DatePicker> = args => {
+  const [selectedDate, setSelectedDate] = React.useState<Date>();
   return (
-    <div style={{ width: '200px', height: '200px' }}>
-      <DatePicker {...args} />
+    <div style={{ width: '260px', height: '100%' }}>
+      <DatePicker
+        selectedDate={selectedDate}
+        onChange={(date: Date) => setSelectedDate(date)}
+        {...args}
+      />
     </div>
   );
 };

@@ -97,3 +97,10 @@ export const goToDate = (cal: Calendar, monthNumber: number, yearParams: number)
   cal.year = yearParams;
   return { ...cal };
 };
+
+// TODO: add format date
+// export const formatDate = (cal: Calendar, format: string): string => {
+//   return format
+//     .replace(/\bYYYY\b/, cal.year.toString())
+//     .replace(/\bDD\b/, String(cal.today.dayNumber));
+// };
