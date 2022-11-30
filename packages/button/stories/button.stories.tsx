@@ -19,6 +19,12 @@ Basic.argTypes = {
   colorScheme: {
     type: 'string',
   },
+  variants: {
+    options: ['solid', 'outline', 'ghost', 'link'],
+    control: {
+      type: 'select',
+    },
+  },
   sizes: {
     options: ['sm', 'md', 'lg'],
     control: {
@@ -27,12 +33,6 @@ Basic.argTypes = {
   },
   block: {
     control: 'boolean',
-  },
-  variants: {
-    options: ['solid', 'outline', 'ghost', 'link'],
-    control: {
-      type: 'select',
-    },
   },
   iconPosition: {
     options: ['left', 'right'],
@@ -43,11 +43,12 @@ Basic.argTypes = {
 };
 
 Basic.args = {
+  variants: 'solid',
   children: 'Button',
-  colorScheme: 'gray',
+  colorScheme: 'pink',
   sizes: 'md',
   block: false,
-  loading: true,
+  loading: false,
   disabled: false,
   icon: '',
 };
