@@ -35,6 +35,7 @@
     "build:fast": "tsup src/index.ts --format=esm,cjs"
   },
   "dependencies": {
+    "@yoru-ui/button": "workspace:^1.0.0",
     "@yoru-ui/core": "workspace:^1.0.0",
     "@yoru-ui/themes": "workspace:^1.0.0"
   }

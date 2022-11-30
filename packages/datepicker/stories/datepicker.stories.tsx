@@ -9,7 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof DatePicker> = args => {
   return (
-    <div style={{ width: '200px', height: '300px' }}>
+    <div style={{ width: '200px', height: '200px' }}>
       <DatePicker {...args} />
     </div>
   );

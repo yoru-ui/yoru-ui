@@ -102,42 +102,42 @@ export const calendar = (
   };
 };
 
-type Calendar = ReturnType<typeof calendar>;
+export type Calendar = ReturnType<typeof calendar>;
 
 export const goToNextYear = (cal: Calendar): Calendar => {
   cal.year += 1;
   cal.month = createMonth(new Date(cal.year, cal.month.number - 1), cal.lang);
-  return cal;
+  return { ...cal };
 };
 
 export const goToPreviousYear = (cal: Calendar): Calendar => {
   cal.year -= 1;
   cal.month = createMonth(new Date(cal.year, cal.month.number - 1), cal.lang);
-  return cal;
+  return { ...cal };
 };
 
 export const goToNextMonth = (cal: Calendar): Calendar => {
   if (cal.month.number === 12) {
     cal.month = createMonth(new Date(cal.year, 0), cal.lang);
-    return cal;
+    return { ...cal };
   }
 
   cal.month = createMonth(new Date(cal.year, cal.month.number), cal.lang);
-  return cal;
+  return { ...cal };
 };
 
 export const goToPreviousMonth = (cal: Calendar): Calendar => {
   if (cal.month.number === 1) {
     cal.month = createMonth(new Date(cal.year, 11), cal.lang);
-    return cal;
+    return { ...cal };
   }
 
   cal.month = createMonth(new Date(cal.year, cal.month.number - 2), cal.lang);
-  return cal;
+  return { ...cal };
 };
 
 export const goToDate = (cal: Calendar, monthNumber: number, yearParams: number): Calendar => {
   cal.month = createMonth(new Date(cal.year, monthNumber - 1), cal.lang);
   cal.year = yearParams;
-  return cal;
+  return { ...cal };
 };
