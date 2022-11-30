@@ -1,49 +1,5 @@
 import { createDay, createMonth } from './date';
 
-// export const calendar = () => {
-//   const weekDays = Array.from({ length: 7 });
-//   const today = createDay(new Date(), 'default');
-//   const year = 2021;
-//   const month = createMonth(new Date(year, 0), 'default');
-//   const lang = 'default';
-//   weekDays.forEach((_, index) => {
-//     const day = month.getDay(index);
-//     if (!weekDays.includes(day.day)) {
-//       weekDays[day.dayNumber - 1] = day.day;
-//     }
-//   });
-
-//   const getMonth = (monthNumber: number): typeof month =>
-//     createMonth(new Date(year, monthNumber - 1), lang);
-
-//   const getPreviousMonth = (): typeof month => {
-//     if (month.number === 1) {
-//       // back to december of previous year
-//       return createMonth(new Date(year - 1, 11), lang);
-//     }
-//     return createMonth(new Date(year, month.number - 2), lang);
-//   };
-
-//   const getNextMonth = (): typeof month => {
-//     if (month.number === 12) {
-//       // back to january of next year
-//       return createMonth(new Date(year + 1, 0), lang);
-//     }
-//     return createMonth(new Date(year, month.number + 2), lang);
-//   };
-
-//   return {
-//     weekDays,
-//     today,
-//     year,
-//     month,
-//     lang,
-//     getMonth,
-//     getPreviousMonth,
-//     getNextMonth,
-//   };
-// };
-
 export const calendar = (
   yearParams: number | null = null,
   monthNumber: number | null = null,
