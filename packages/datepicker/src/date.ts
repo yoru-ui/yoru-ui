@@ -14,6 +14,7 @@ export const createDay = (dateParams: Date = new Date(), lang = 'default') => {
     date: dateParams.getDate(),
     day: dateParams.toLocaleDateString(lang, { weekday: 'long' }),
     dayNumber: dateParams.getDay() + 1,
+    dayShort: dateParams.toLocaleDateString(lang, { weekday: 'short' }),
     year: dateParams.getFullYear(),
     yearShort: dateParams.toLocaleDateString(lang, { year: '2-digit' }),
     month: dateParams.toLocaleDateString(lang, { month: 'long' }),
@@ -33,6 +34,24 @@ export const createDay = (dateParams: Date = new Date(), lang = 'default') => {
     isEqualTo,
     isToday: (): boolean => isEqualTo(new Date()),
   };
+};
+
+export const formatDate = (cal: ReturnType<typeof createDay>, format: string): string => {
+  return format
+    .replace(/\bYYYY\b/, cal.year.toString())
+    .replace(/\bDDDD\b/, cal.day)
+    .replace(/\bDDD\b/, cal.dayShort)
+    .replace(/\bDD\b/, cal.date.toString().padStart(2, '0'))
+    .replace(/\bD\b/, cal.date.toString())
+    .replace(/\bMMMM\b/, cal.day)
+    .replace(/\bMM\b/, cal.monthNumber.toString().padStart(2, '0'))
+    .replace(/\byyyy\b/, cal.year.toString())
+    .replace(/\bdddd\b/, cal.day)
+    .replace(/\bddd\b/, cal.dayShort)
+    .replace(/\bdd\b/, cal.date.toString().padStart(2, '0'))
+    .replace(/\bd\b/, cal.date.toString())
+    .replace(/\bmmmm\b/, cal.day)
+    .replace(/\bmm\b/, cal.monthNumber.toString().padStart(2, '0'));
 };
 
 export const createMonth = (dateParams: Date, lang = 'default') => {

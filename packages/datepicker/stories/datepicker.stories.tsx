@@ -22,3 +22,8 @@ const Template: ComponentStory<typeof DatePicker> = args => {
 
 // Basic Controller Stories
 export const Basic = Template.bind({});
+
+Basic.argTypes = {
+  selectedDate: { control: { disable: true } },
+  format: { type: { name: 'string' } },
+};

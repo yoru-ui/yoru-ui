@@ -8,9 +8,9 @@ import {
   goToPreviousYear,
   goToNextYear,
   formatDate,
-} from './calendar';
+  createDay,
+} from './';
 import { yoru } from '@yoru-ui/core';
-import { createDay } from './date';
 import { useResolvedThemes } from '@yoru-ui/themes';
 import { Button } from '@yoru-ui/button';
 import { Input } from '@yoru-ui/input';
@@ -20,6 +20,7 @@ export interface DatepickerProperties {
   // your props here
   selectedDate?: Date;
   onChange?: (date: Date) => void;
+  format?: string;
 }
 
 const arrayOfMonth = [
@@ -147,6 +148,7 @@ const RenderPicker: React.FC<RenderPickerProperties> = (props): React.ReactEleme
 export const DatePicker: React.FC<DatepickerProperties> = ({
   onChange = () => {},
   selectedDate,
+  format = 'dd/MM/yyyy',
 }) => {
   const [calendars, setCalendars] = useState<Calendar>(calendar());
   const [mode, setMode] = useState<PickerMode>('day');
@@ -193,15 +195,13 @@ export const DatePicker: React.FC<DatepickerProperties> = ({
     }
   }, []);
 
-  React.useEffect(() => {
-    if (selectedDate) {
-      console.info(formatDate(calendar(selectedDate), 'Tanggal: DD-YYYY'));
-    }
-  }, [selectedDate]);
-
   return (
     <yoru.div ref={datePickerRef} __style={baseStyle} className="yoru-date-picker">
-      <Input value={selectedDate?.toISOString()} disabled placeholder="Select Date" />
+      <Input
+        value={selectedDate ? formatDate(createDay(selectedDate), format) : 'Select date'}
+        disabled
+        placeholder="Select Date"
+      />
       <yoru.div className="yoru-click-listener" onClick={() => setVisible(!visible)}></yoru.div>
       {visible && (
         <yoru.div className="date-picker-overlay">
