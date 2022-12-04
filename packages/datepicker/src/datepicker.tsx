@@ -75,12 +75,12 @@ const pickerMode = ({
 }: RenderPickerProperties) => ({
   day: (
     <>
-      <yoru.div className="date-picker--weekdays">
+      <yoru.div className="date-picker-overlay__weekdays">
         {cal.weekDays.map((day, index) => (
           <span key={index}>{(day as string).slice(0, 3)}</span>
         ))}
       </yoru.div>
-      <yoru.div className="date-picker--days">
+      <yoru.div className="date-picker-overlay__days">
         {getMonthDaysGrid(cal).map((day, index) => (
           <yoru.span
             key={index}
@@ -96,7 +96,7 @@ const pickerMode = ({
     </>
   ),
   month: (
-    <yoru.div className="date-picker--months">
+    <yoru.div className="date-picker-overlay__months">
       {arrayOfMonth.map((month, index) => (
         <yoru.span
           key={index}
@@ -114,7 +114,7 @@ const pickerMode = ({
       yearList[index] = cal.year - 6 + index;
     }
     return (
-      <div className="date-picker--years">
+      <div className="date-picker-overlay__years">
         {(yearList as number[]).map(year => (
           <span
             key={year}
@@ -205,7 +205,7 @@ export const DatePicker: React.FC<DatepickerProperties> = ({
       <yoru.div className="yoru-click-listener" onClick={() => setVisible(!visible)}></yoru.div>
       {visible && (
         <yoru.div className="date-picker-overlay">
-          <yoru.div className="date-picker--header">
+          <yoru.div className="date-picker-overlay__header">
             <Button
               onClick={() => handlePreviousButton(mode)}
               className="prev-month"

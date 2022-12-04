@@ -43,7 +43,7 @@ const baseStyle: YoruStyleProperties = {
     padding: '1em 0 0.4em 0',
     animation: 'all 0.2s',
     borderRadius: '0.25rem',
-    '& .date-picker--header': {
+    '&__header': {
       marginBottom: '1em',
       display: 'flex',
       justifyContent: 'space-between',
@@ -65,7 +65,7 @@ const baseStyle: YoruStyleProperties = {
         },
       },
     },
-    '& .date-picker--weekdays': {
+    '&__weekdays': {
       display: 'grid',
       gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
       placeItems: 'center',
@@ -73,7 +73,7 @@ const baseStyle: YoruStyleProperties = {
       fontWeight: 'bold',
       margin: '0.5em 0',
     },
-    '& .date-picker--days': {
+    '&__days': {
       display: 'grid',
       gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
       placeItems: 'center',
@@ -118,7 +118,7 @@ const baseStyle: YoruStyleProperties = {
         },
       },
     },
-    '& .date-picker--months, .date-picker--years': {
+    '&__months, &__years': {
       display: 'grid',
       gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
       placeItems: 'center',
