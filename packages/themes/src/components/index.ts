@@ -2,6 +2,7 @@ import Button from './button';
 import Input from './input';
 import Checkbox from './checkbox';
 import Switch from './switch';
+import Radio from './radio';
 import DatePicker from './datepicker';
 import type { ColorScheme } from '../';
 
@@ -9,6 +10,7 @@ export { default as Button } from './button';
 export { default as Input } from './input';
 export { default as Checkbox } from './checkbox';
 export { default as Switch } from './switch';
+export { default as Radio } from './radio';
 export { default as DatePicker } from './datepicker';
 
 export const components = {
@@ -16,6 +18,7 @@ export const components = {
   Input,
   Checkbox,
   Switch,
+  Radio,
   DatePicker,
 };
 
