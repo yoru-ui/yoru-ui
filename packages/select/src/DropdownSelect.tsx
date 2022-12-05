@@ -14,17 +14,27 @@ const styledDrodpwon: YoruStyleProperties = {
   borderRadius: '.25em',
   background: 'white',
   zIndex: 100,
+  fontFamily: 'sans-serif',
 
-  '&__dropdownItem': {
+  '& .yoru-select-dropdown__dropdownItem': {
     padding: '.25em .5em',
     cursor: 'pointer',
+
+    '&--selected': {
+      background: 'sky.100',
+    },
 
     '&:hover': {
       background: 'gray.200',
     },
 
-    '&--selected': {
-      background: 'sky.100',
+    '&--highlighted': {
+      background: 'sky.200',
+    },
+
+    '&--disabled': {
+      pointerEvents: 'none',
+      opacity: 0.6,
     },
   },
 };
@@ -41,7 +51,7 @@ interface DropdownSelectProps {
 }
 
 const DropdownSelect: React.FC<DropdownSelectProps> = ({
-  open,
+  open = false,
   toggleDropdown,
   children,
   properties,
@@ -50,13 +60,16 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
 
   const closeModal = React.useCallback(
     (e: any) => {
-      const target = e.target;
-
-      if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(target)) {
-        toggleDropdown(e);
+      if (open === true) {
+        const target = e.target;
+        console.info(dropdownRef.current);
+        if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(target)) {
+          toggleDropdown(e);
+        }
+        return false;
       }
     },
-    [toggleDropdown],
+    [toggleDropdown, open],
   );
 
   React.useEffect(() => {
@@ -66,21 +79,21 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
     };
   }, [closeModal]);
 
-  if (!open) {
-    return null;
-  }
-
   return ReactDOM.createPortal(
     <yoru.div className="yoru-virtual-dropdown">
       <yoru.ul
-        className="yoru-selector__dropdown"
+        className="yoru-select-dropdown"
         ref={dropdownRef}
+        tabIndex={0}
         __style={{
           ...styledDrodpwon,
-          display: open ? 'block' : 'none',
-          top: properties?.y,
+          visibility: open ? 'visible' : 'hidden',
+          opacity: open ? 1 : 0,
+          transition: 'all .25s ease',
+          top: open ? properties?.y : Number(properties?.y) - 10,
           left: properties?.x,
           width: properties?.width,
+          pointerEvents: open ? 'auto' : 'none',
         }}
       >
         {children}

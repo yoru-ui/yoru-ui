@@ -10,6 +10,8 @@ export const Select: React.FC<BaseSelectProps> = props => {
   const { value, options, placeholder, onChange, children } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
+  const [highlightedIndex, setHighlightedIndex] = React.useState(0);
+
   const [dropdownDimension, setDropdownDimension] = React.useState<{
     width: number;
     x: number;
@@ -18,14 +20,10 @@ export const Select: React.FC<BaseSelectProps> = props => {
 
   const buttonStyled = useResolvedThemes('Select', {});
 
-  const handleCloseDropdown = () => {
-    setIsOpen(false);
-    setDropdownDimension({
-      width: 0,
-      x: 0,
-      y: 0,
-    });
-  };
+  const toggleDropdown = React.useCallback(() => {
+    setIsOpen(prevState => !prevState);
+    setHighlightedIndex(0);
+  }, []);
 
   const handleSelected = (option: SelectOption) => {
     if (onChange) {
@@ -36,18 +34,22 @@ export const Select: React.FC<BaseSelectProps> = props => {
     }
   };
 
-  const onClearSelected = (e: any) => {
-    e.stopPropagation();
-    handleCloseDropdown();
-    return onChange(null);
+  const onClearSelected = () => {
+    toggleDropdown();
+    onChange(null);
   };
 
-  const toggleDropdown = React.useCallback(() => {
-    setIsOpen(prevState => !prevState);
-  }, []);
+  // accessbility
+  const handlerKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (event.code) {
+      case 'Escape':
+        setIsOpen(prev => !prev);
+        break;
+    }
+  };
 
   // set dimension of dropdown when open
-  const callBackRef = React.useCallback((domNode: HTMLElement) => {
+  const getNodeRef = React.useCallback((domNode: HTMLElement) => {
     if (domNode) {
       const bounds = domNode.getBoundingClientRect();
       setDropdownDimension({
@@ -59,33 +61,43 @@ export const Select: React.FC<BaseSelectProps> = props => {
   }, []);
 
   return (
-    <yoru.div
-      tabIndex={0}
-      ref={callBackRef}
-      className="yoru-select"
-      __style={buttonStyled}
-      onClick={toggleDropdown}
-    >
-      <SingleSelect
-        placeholder={placeholder}
-        value={value as SelectOption}
-        onClearSelected={onClearSelected}
-      />
-      <DropdownSelect open={isOpen} properties={dropdownDimension} toggleDropdown={toggleDropdown}>
-        {options
-          ? options.map((option, index) => (
-              <Option
-                onClick={(e: any) => {
-                  e.stopPropagation();
-                  handleSelected(option);
-                }}
-                key={index}
-              >
-                {option.label}
-              </Option>
-            ))
-          : children}
-      </DropdownSelect>
+    <yoru.div className="yoru-select" __style={buttonStyled}>
+      <yoru.div
+        className={`yoru-select-inner ${isOpen ? 'yoru-select-inner--focused' : ''}`}
+        tabIndex={0}
+        ref={getNodeRef}
+        onClick={toggleDropdown}
+        onKeyDown={handlerKeyDown}
+      >
+        <SingleSelect
+          placeholder={placeholder}
+          value={value as SelectOption}
+          onClearSelected={onClearSelected}
+          isOpen={isOpen}
+        />
+        <DropdownSelect
+          open={isOpen}
+          properties={dropdownDimension}
+          toggleDropdown={toggleDropdown}
+        >
+          {options
+            ? options.map((option, index) => (
+                <Option
+                  onClick={(e: any) => {
+                    e.stopPropagation();
+                    handleSelected(option);
+                  }}
+                  key={index}
+                  selected={option === value}
+                  highlighted={index === highlightedIndex}
+                  onMouseEnter={() => setHighlightedIndex(index)}
+                >
+                  {option.label}
+                </Option>
+              ))
+            : children}
+        </DropdownSelect>
+      </yoru.div>
     </yoru.div>
   );
 };

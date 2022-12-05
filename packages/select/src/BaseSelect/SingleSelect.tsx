@@ -2,6 +2,7 @@ import * as React from 'react';
 import { yoru } from '@yoru-ui/core';
 import { Input } from '@yoru-ui/input/src';
 import { SelectOption } from '../Select.interface';
+import ChevronIcon from '../ChevronIcon';
 
 export type BaseSingleSelectProps = {
   placeholder?: React.ReactNode;
@@ -10,10 +11,11 @@ export type BaseSingleSelectProps = {
   children?: React.ReactNode;
   onClearSelected?: (e: any) => void;
   value?: SelectOption | null;
+  isOpen?: boolean;
 };
 
 export const SingleSelect: React.FC<BaseSingleSelectProps> = props => {
-  const { value, placeholder, isMultiple, showSearch = false, onClearSelected } = props;
+  const { value, placeholder, isMultiple, showSearch = false, onClearSelected, isOpen } = props;
 
   const [searchValue, setSearchValue] = React.useState<string>('');
 
@@ -37,9 +39,18 @@ export const SingleSelect: React.FC<BaseSingleSelectProps> = props => {
     return showSearch ? (
       <yoru.span className="yoru-selector__suffix-icon" />
     ) : (
-      <yoru.button onClick={onClearSelected} __style={{ zIndex: 999 }}>
-        &times;
-      </yoru.button>
+      <yoru.div __style={{ display: 'flex', columnGap: '.5rem' }}>
+        <yoru.span
+          className="yoru-selector__close-button"
+          onClick={onClearSelected}
+          __style={{ zIndex: 999 }}
+        >
+          &times;
+        </yoru.span>
+        <yoru.div>
+          <ChevronIcon direction={isOpen ? 'top' : 'bottom'} />
+        </yoru.div>
+      </yoru.div>
     );
   };
 
