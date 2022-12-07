@@ -1,33 +1,16 @@
 import * as React from 'react';
 import { yoru } from '@yoru-ui/core';
-import { Input } from '@yoru-ui/input/src';
-import { SelectOption } from '../Select.interface';
 import ChevronIcon from '../ChevronIcon';
-
-export type BaseSingleSelectProps = {
-  placeholder?: React.ReactNode;
-  showSearch?: boolean;
-  isMultiple?: false;
-  children?: React.ReactNode;
-  onClearSelected?: (e: any) => void;
-  value?: SelectOption | null;
-  isOpen?: boolean;
-};
+import { BaseSingleSelectProps } from './BaseSelect.interface';
 
 export const SingleSelect: React.FC<BaseSingleSelectProps> = props => {
-  const { value, placeholder, isMultiple, showSearch = false, onClearSelected, isOpen } = props;
-
-  const [searchValue, setSearchValue] = React.useState<string>('');
-
-  const inputValue: string = searchValue || '';
-
-  const hasTextInput = !isMultiple && !showSearch ? false : !!inputValue;
+  const { value, placeholder, isMultiple = false, onClearSelected, isOpen } = props;
 
   const renderPlaceholder = () => {
     if (value) {
       return null;
     }
-    const hiddenStyle = hasTextInput ? { visibility: 'hidden' as const } : undefined;
+    const hiddenStyle = value ? { visibility: 'hidden' as const } : undefined;
     return (
       <yoru.span className="yoru-selector__placeholder" style={hiddenStyle}>
         {placeholder}
@@ -36,10 +19,8 @@ export const SingleSelect: React.FC<BaseSingleSelectProps> = props => {
   };
 
   const suffixIcon = () => {
-    return showSearch ? (
-      <yoru.span className="yoru-selector__suffix-icon" />
-    ) : (
-      <yoru.div __style={{ display: 'flex', columnGap: '.5rem' }}>
+    return (
+      <yoru.div __style={{ display: 'flex', columnGap: '.5rem', position: 'absolute', right: 10 }}>
         <yoru.span
           className="yoru-selector__close-button"
           onClick={onClearSelected}
@@ -56,26 +37,13 @@ export const SingleSelect: React.FC<BaseSingleSelectProps> = props => {
 
   return (
     <>
-      <yoru.div className="yoru-selector">
-        <yoru.div
-          className={`yoru-selector__input ${
-            showSearch ? `yoru-selector__input--showSearch` : 'yoru-selector__input--hiddenSearch'
-          }`}
-        >
-          <Input
-            readOnly={!showSearch}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setSearchValue(event.target.value)
-            }
-            suffix={suffixIcon()}
-          />
-        </yoru.div>
-
-        {!isMultiple && value && !hasTextInput && (
+      <yoru.div className="yoru-selector" __style={{ position: 'relative' }}>
+        {!isMultiple && value && (
           <yoru.span className={`yoru-selector__selectedItem`}>{value.label}</yoru.span>
         )}
 
         {renderPlaceholder()}
+        {suffixIcon()}
       </yoru.div>
     </>
   );

@@ -5,12 +5,12 @@ import SingleSelect from './BaseSelect/SingleSelect';
 import Option from './BaseSelect/Option';
 import DropdownSelect from './DropdownSelect';
 import { BaseSelectProps, SelectOption } from './Select.interface';
+import MultiSelect from './BaseSelect/MultiSelect';
 
 export const Select: React.FC<BaseSelectProps> = props => {
-  const { value, options, placeholder, onChange, children } = props;
+  const { value, options, placeholder, onChange, isMultiple, styles } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
-  const [highlightedIndex, setHighlightedIndex] = React.useState(0);
 
   const [dropdownDimension, setDropdownDimension] = React.useState<{
     width: number;
@@ -22,21 +22,28 @@ export const Select: React.FC<BaseSelectProps> = props => {
 
   const toggleDropdown = React.useCallback(() => {
     setIsOpen(prevState => !prevState);
-    setHighlightedIndex(0);
   }, []);
 
   const handleSelected = (option: SelectOption) => {
     if (onChange) {
-      if (option !== value) {
-        onChange(option);
-        setIsOpen(false);
+      if (isMultiple) {
+        if (value?.includes(option)) {
+          onChange(value.filter(item => item !== option));
+        } else {
+          onChange([...(value || []), option]);
+        }
+      } else {
+        if (option !== value) {
+          onChange(option);
+          setIsOpen(false);
+        }
       }
     }
   };
 
   const onClearSelected = () => {
     toggleDropdown();
-    onChange(null);
+    return isMultiple ? onChange([]) : onChange(null);
   };
 
   // accessbility
@@ -60,8 +67,12 @@ export const Select: React.FC<BaseSelectProps> = props => {
     }
   }, []);
 
+  const isOptionSelected = (option: SelectOption) => {
+    return isMultiple ? value?.includes(option) : option === value;
+  };
+
   return (
-    <yoru.div className="yoru-select" __style={buttonStyled}>
+    <yoru.div className="yoru-select" __style={{ ...buttonStyled, ...styles }}>
       <yoru.div
         className={`yoru-select-inner ${isOpen ? 'yoru-select-inner--focused' : ''}`}
         tabIndex={0}
@@ -69,16 +80,27 @@ export const Select: React.FC<BaseSelectProps> = props => {
         onClick={toggleDropdown}
         onKeyDown={handlerKeyDown}
       >
-        <SingleSelect
-          placeholder={placeholder}
-          value={value as SelectOption}
-          onClearSelected={onClearSelected}
-          isOpen={isOpen}
-        />
+        {isMultiple ? (
+          <MultiSelect
+            placeholder={placeholder}
+            value={value || []}
+            onClearSelected={onClearSelected}
+            isOpen={isOpen}
+            handleSelected={handleSelected}
+          />
+        ) : (
+          <SingleSelect
+            placeholder={placeholder}
+            value={value as SelectOption}
+            onClearSelected={onClearSelected}
+            isOpen={isOpen}
+          />
+        )}
         <DropdownSelect
           open={isOpen}
           properties={dropdownDimension}
           toggleDropdown={toggleDropdown}
+          isMultiple={isMultiple}
         >
           {options
             ? options.map((option, index) => (
@@ -88,14 +110,12 @@ export const Select: React.FC<BaseSelectProps> = props => {
                     handleSelected(option);
                   }}
                   key={index}
-                  selected={option === value}
-                  highlighted={index === highlightedIndex}
-                  onMouseEnter={() => setHighlightedIndex(index)}
+                  selected={isOptionSelected(option)}
                 >
                   {option.label}
                 </Option>
               ))
-            : children}
+            : null}
         </DropdownSelect>
       </yoru.div>
     </yoru.div>

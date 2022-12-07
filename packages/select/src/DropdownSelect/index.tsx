@@ -1,60 +1,15 @@
-import { yoru, YoruStyleProperties } from '@yoru-ui/core';
+import { yoru } from '@yoru-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const styledDrodpwon: YoruStyleProperties = {
-  position: 'absolute',
-  margin: 0,
-  padding: 0,
-  listStyle: 'none',
-  maxHeight: '15em',
-  overflowY: 'auto',
-  border: '.05em solid',
-  borderColor: 'gray.200',
-  borderRadius: '.25em',
-  background: 'white',
-  zIndex: 100,
-  fontFamily: 'sans-serif',
-
-  '& .yoru-select-dropdown__dropdownItem': {
-    padding: '.25em .5em',
-    cursor: 'pointer',
-
-    '&--selected': {
-      background: 'sky.100',
-    },
-
-    '&:hover': {
-      background: 'gray.200',
-    },
-
-    '&--highlighted': {
-      background: 'sky.200',
-    },
-
-    '&--disabled': {
-      pointerEvents: 'none',
-      opacity: 0.6,
-    },
-  },
-};
-
-interface DropdownSelectProps {
-  open: boolean;
-  toggleDropdown: (e: React.MouseEvent) => void;
-  children: React.ReactNode;
-  properties?: {
-    width: number;
-    x: number;
-    y: number;
-  } | null;
-}
+import { DropdownSelectProps } from './Dropdown.interface';
+import { styledDrodpwon } from './Dropdown.styled';
 
 const DropdownSelect: React.FC<DropdownSelectProps> = ({
   open = false,
   toggleDropdown,
   children,
   properties,
+  isMultiple,
 }) => {
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
@@ -62,7 +17,6 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
     (e: any) => {
       if (open === true) {
         const target = e.target;
-        console.info(dropdownRef.current);
         if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(target)) {
           toggleDropdown(e);
         }
@@ -90,9 +44,10 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
           visibility: open ? 'visible' : 'hidden',
           opacity: open ? 1 : 0,
           transition: 'all .25s ease',
-          top: open ? properties?.y : Number(properties?.y) - 10,
+          top: !isMultiple ? (open ? properties?.y : Number(properties?.y) - 10) : undefined,
           left: properties?.x,
           width: properties?.width,
+          marginTop: isMultiple ? (open ? '.5rem' : 0) : undefined,
           pointerEvents: open ? 'auto' : 'none',
         }}
       >

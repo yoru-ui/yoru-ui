@@ -5,7 +5,6 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Select } from '../src/select';
-import Option from '../src/BaseSelect/Option';
 import { SelectOption } from '../src/Select.interface';
 
 export default {
@@ -70,58 +69,39 @@ Basic.args = {
   options: options,
 };
 
-export const SelectControlled = () => {
+export const SingleSelect = () => {
   const [value, setValue] = React.useState<SelectOption | null>(null);
-  // const [value2, setValue2] = React.useState<SelectOption[]>([]);
 
   const handleChange = (value: SelectOption | null) => {
-    console.info(value);
     setValue(value);
   };
 
   return (
-    <>
-      <Select
-        value={value}
-        onChange={handleChange}
-        placeholder="Controlled select"
-        options={options}
-        showSearch={false}
-      />
-      <br />
-      <br />
-      {/* <Select
-        value={value2}
-        isMultiple
-        onChange={p => setValue2(p)}
-        placeholder="Controlled select Multiple"
-        options={options}
-        showSearch={false}
-      /> */}
-    </>
+    <Select
+      value={value}
+      styles={{ width: '300px' }}
+      onChange={handleChange}
+      placeholder="Controlled select"
+      options={options}
+    />
   );
 };
 
-export const ChildrenOption = () => {
-  const [value, setValue] = React.useState<SelectOption | null>(null);
-  // const [value2, setValue2] = React.useState<SelectOption[]>([]);
+export const MultipleSelect = () => {
+  const [value, setValue] = React.useState<SelectOption[]>([]);
 
-  const handleChange = (value: SelectOption | null) => {
-    console.info(value);
+  const handleChange = (value: SelectOption[]) => {
     setValue(value);
   };
 
   return (
-    <>
-      <Select
-        value={value}
-        onChange={handleChange}
-        placeholder="Controlled select"
-        showSearch={false}
-      >
-        <Option>TEST 1</Option>
-        <Option>TEST 2</Option>
-      </Select>
-    </>
+    <Select
+      value={value}
+      styles={{ width: '400px' }}
+      onChange={handleChange}
+      placeholder="Controlled select Multiple"
+      isMultiple
+      options={options}
+    />
   );
 };

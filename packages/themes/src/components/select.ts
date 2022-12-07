@@ -3,12 +3,9 @@ import { YoruStyleProperties } from '@yoru-ui/core';
 const baseStyle: YoruStyleProperties = {
   display: 'inline-block',
   fontSize: 14,
-  width: 300,
+  width: '100%',
   position: 'relative',
 
-  // '&:focus, &:focus-within': {
-  //   borderColor: 'blue.500',
-  // },
   '.yoru-select-inner': {
     border: '1px solid',
     borderRadius: '3px',
@@ -23,6 +20,14 @@ const baseStyle: YoruStyleProperties = {
         display: 'block',
         cursor: 'pointer',
       },
+    },
+
+    '& .yoru-selector-multiple__selectedItem ': {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '.25rem',
+      padding: '.25em .5em',
+      paddingRight: '3rem',
     },
 
     '& .yoru-selector': {
