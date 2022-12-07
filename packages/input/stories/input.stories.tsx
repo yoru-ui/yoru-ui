@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Input } from '../src';
+import SearchIcon from '../src/searchIcon';
 
 export default {
   title: 'Input',
@@ -21,7 +22,7 @@ export const Basic = Template.bind({});
 export const WithPrefix = () => {
   return (
     <div style={{ width: '220px' }}>
-      <Input prefix={<span style={{ padding: '0 10px' }}>Search</span>}></Input>
+      <Input placeholder="Search..." prefix={<SearchIcon />}></Input>
     </div>
   );
 };
@@ -29,7 +30,7 @@ export const WithPrefix = () => {
 export const WithSuffix = () => {
   return (
     <div style={{ width: '220px' }}>
-      <Input suffix={<span style={{ padding: '0 10px 0 10px' }}>Search hello</span>}></Input>
+      <Input placeholder="Search..." suffix={<SearchIcon />}></Input>
     </div>
   );
 };

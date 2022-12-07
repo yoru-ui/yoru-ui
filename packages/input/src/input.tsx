@@ -27,7 +27,6 @@ export const Input: React.FC<InputProperties> = ({
       const affix = document.querySelector('.yoru-input-affix') as HTMLSpanElement;
       const suffixWidth = suffix ? `${affix.offsetWidth}px` : '11px';
       const prefixWidth = prefix ? `${affix.offsetWidth}px` : '11px';
-
       const inputElement = document.querySelector('input.yoru-input') as HTMLInputElement;
       inputElement.style.padding = `0 ${suffixWidth} 0 ${prefixWidth}`;
     }
