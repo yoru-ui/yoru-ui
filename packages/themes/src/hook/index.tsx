@@ -23,7 +23,7 @@ export const useResolvedThemes = <T extends ComponentNames>(
   const { components } = baseTheme;
   const themeStyleConfig = components[componentKey] as ComponentType<T>;
   // selector for get all baseStyle from theme
-  const getBaseStyled = themeStyleConfig.baseStyle;
+  const getBaseStyled = runIfFN(themeStyleConfig.baseStyle, { ...props, colorMode: theme });
   // selector for get all colorScheme from theme
   const getColorScheme = colorScheme && themeStyleConfig.colorScheme;
   // selector for get all size from theme

@@ -1,10 +1,14 @@
 import { YoruStyleProperties } from '@yoru-ui/core';
 import type { TextSize } from '../foundations/text';
+import { mode } from '../utils/theme-utils';
 
-const baseStyle: YoruStyleProperties = {
-  fontFamily: 'Arial, Helvetica, sans-serif',
-  padding: 0,
-  margin: 0,
+const baseStyle = (props: any): YoruStyleProperties => {
+  return {
+    fontFamily: 'Arial, Helvetica, sans-serif',
+    padding: 0,
+    margin: 0,
+    color: mode(`#333333`, `pink.500`)(props),
+  };
 };
 
 const sizes: Record<TextSize, YoruStyleProperties> = {
@@ -46,8 +50,9 @@ const sizes: Record<TextSize, YoruStyleProperties> = {
   },
 };
 
-const linkVariant = (): YoruStyleProperties => {
+const linkVariant = (props: any): YoruStyleProperties => {
   return {
+    color: mode(`#333333`, `pink.500`)(props),
     textDecoration: 'underline',
     cursor: 'pointer',
   };

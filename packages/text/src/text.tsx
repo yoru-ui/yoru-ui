@@ -26,7 +26,7 @@ export const Text: React.FC<TextProperties> = ({
   align = 'left',
   fw = 'normal',
   fs = 'normal',
-  color = '#333333',
+  color,
   variant,
   ...props
 }) => {
