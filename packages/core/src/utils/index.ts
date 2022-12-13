@@ -42,4 +42,6 @@ export const transformConfig: TransformConfig = {
   color: transformCSS('colors'),
   pseudo: transformCSS('pseudo'),
   shadows: transformCSS('shadows'),
+  texts: transformCSS('texts'),
+  lineHeights: transformCSS('lineHeights'),
 };

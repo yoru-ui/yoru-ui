@@ -4,6 +4,7 @@ import Checkbox from './checkbox';
 import Switch from './switch';
 import Radio from './radio';
 import DatePicker from './datepicker';
+import Text from './text';
 import type { ColorScheme } from '../';
 
 export { default as Button } from './button';
@@ -12,6 +13,7 @@ export { default as Checkbox } from './checkbox';
 export { default as Switch } from './switch';
 export { default as Radio } from './radio';
 export { default as DatePicker } from './datepicker';
+export { default as Text } from './text';
 
 export const components = {
   Button,
@@ -20,6 +22,7 @@ export const components = {
   Switch,
   Radio,
   DatePicker,
+  Text,
 };
 
 type Component = typeof components;

@@ -1,7 +1,9 @@
 import { isObject } from '@yoru-ui/utils';
 import { YoruStyleProperties } from './system';
-import configs from './configs';
+import configs, { Config } from './configs';
 import { keyIsPseudoSelector, pseudoSelector } from './pseudo';
+
+const isHasConfig = (key: string): key is keyof Config => key in configs;
 
 export const getCss =
   (style: YoruStyleProperties) =>
@@ -9,8 +11,8 @@ export const getCss =
     for (let key of Object.keys(style)) {
       let transform;
 
-      if (key in configs) {
-        transform = configs[key as keyof typeof configs];
+      if (isHasConfig(key)) {
+        transform = configs[key];
       }
 
       if (isObject(style[key]) && !transform) {
