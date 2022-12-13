@@ -30,7 +30,7 @@ export function objectFilter<T extends Record<string, any>>(object: T, fn: Filte
   Object.keys(object).forEach(key => {
     const value = object[key];
     const shouldPass = fn(value, key, object);
-    if (shouldPass) {
+    if (shouldPass && value) {
       result[key] = value;
     }
   });
