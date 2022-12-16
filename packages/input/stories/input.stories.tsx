@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof Input> = args => {
   return (
-    <div style={{ width: '200px' }}>
+    <div>
       <Input {...args} />
     </div>
   );
@@ -18,6 +18,14 @@ const Template: ComponentStory<typeof Input> = args => {
 
 // Basic Controller Stories
 export const Basic = Template.bind({});
+Basic.argTypes = {
+  placeholder: {
+    defaultValue: 'Search...',
+    control: {
+      type: 'text',
+    },
+  },
+};
 
 export const WithPrefix = () => {
   return (

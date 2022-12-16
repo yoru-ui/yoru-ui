@@ -19,7 +19,7 @@ export const Input: React.FC<InputProperties> = ({
   onChange,
   ...restProperties
 }) => {
-  const styledInput = useResolvedThemes('Input', { variants: 'default' });
+  const styledInput = useResolvedThemes('Input', {});
 
   useEffect(() => {
     if (prefix || suffix) {
@@ -46,7 +46,7 @@ export const Input: React.FC<InputProperties> = ({
             position: 'absolute',
             left: prefix ? 0 : 'unset',
             right: suffix ? 0 : 'unset',
-            height: 32,
+            height: 38,
             minWidth: '2rem',
             zIndex: 1,
             display: 'flex',
