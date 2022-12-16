@@ -1,7 +1,7 @@
 import { YoruStyleProperties } from '@yoru-ui/core';
 import { mode } from '../utils/theme-utils';
 
-const baseStyle: YoruStyleProperties = {
+const baseStyle = (props: any): YoruStyleProperties => ({
   position: 'relative',
   transition: 'all .3s',
   padding: '4px 11px',
@@ -10,7 +10,12 @@ const baseStyle: YoruStyleProperties = {
   borderColor: '#EDEDED',
   borderRadius: 4,
   width: '100%',
-  height: 32,
+  _placeholder: {
+    color: mode('gray.400', 'gray.100')(props),
+  },
+  background: mode('white', '#121212')(props),
+  color: mode('gray.700', 'white')(props),
+  height: 38,
   _hover: {
     borderColor: 'sky.500',
   },
@@ -19,22 +24,8 @@ const baseStyle: YoruStyleProperties = {
     boxShadow: '0 0 0 2px rgba(24, 144, 255, 0.2);',
     outline: 'none',
   },
-};
-
-const defaultVariants = (props: any) => {
-  return {
-    width: '100%',
-    _placeholder: {
-      color: mode('gray.400', 'white')(props),
-    },
-  };
-};
-
-const variants = {
-  default: defaultVariants,
-};
+});
 
 export default {
   baseStyle,
-  variants,
 };
