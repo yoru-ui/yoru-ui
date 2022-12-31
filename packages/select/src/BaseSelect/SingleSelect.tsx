@@ -10,12 +10,7 @@ export const SingleSelect: React.FC<BaseSingleSelectProps> = props => {
     if (value) {
       return null;
     }
-    const hiddenStyle = value ? { visibility: 'hidden' as const } : undefined;
-    return (
-      <yoru.span className="yoru-selector__placeholder" style={hiddenStyle}>
-        {placeholder}
-      </yoru.span>
-    );
+    return <yoru.span className="yoru-selector__placeholder">{placeholder}</yoru.span>;
   };
 
   const suffixIcon = () => {

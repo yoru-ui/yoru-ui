@@ -14,10 +14,10 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   const closeModal = React.useCallback(
-    (e: any) => {
+    (e: MouseEvent) => {
       if (open === true) {
         const target = e.target;
-        if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(target)) {
+        if (dropdownRef && dropdownRef.current && !dropdownRef.current.contains(target as Node)) {
           toggleDropdown(e);
         }
         return false;

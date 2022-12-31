@@ -80,28 +80,6 @@ const baseStyle: YoruStyleProperties = {
         color: 'gray.400',
       },
 
-      '&__dropdown': {
-        position: 'absolute',
-        margin: 0,
-        padding: 0,
-        listStyle: 'none',
-        display: 'none',
-        maxHeight: '15em',
-        overflowY: 'auto',
-        border: '.05em solid',
-        borderColor: 'gray.200',
-        borderRadius: '.25em',
-        width: '100%',
-        left: 0,
-        top: 'calc(100% + .25em)',
-        background: 'white',
-        zIndex: 100,
-
-        '&--show': {
-          display: 'block',
-        },
-      },
-
       '&__dropdownItem': {
         padding: '.25em .5em',
         cursor: 'pointer',

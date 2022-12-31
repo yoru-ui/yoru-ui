@@ -7,17 +7,17 @@ export type SelectOption = {
 export interface SingleSelectProps {
   isMultiple?: false;
   value?: SelectOption | null;
-  onChange: (value: SelectOption | null) => void;
+  onChange?: (value: SelectOption | null) => void;
 }
 
 export interface MultiSelectProps {
   isMultiple: true;
   value?: SelectOption[];
-  onChange: (value: SelectOption[]) => void;
+  onChange?: (value: SelectOption[]) => void;
 }
 
 export type BaseSelectProps = {
-  placeholder: React.ReactNode;
+  placeholder?: React.ReactNode;
   showSearch?: boolean;
   options?: SelectOption[];
   styles?: YoruStyleProperties;

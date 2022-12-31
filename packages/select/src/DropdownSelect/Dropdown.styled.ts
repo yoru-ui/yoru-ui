@@ -26,10 +26,6 @@ export const styledDrodpwon: YoruStyleProperties = {
       background: 'gray.200',
     },
 
-    // '&--highlighted': {
-    //   background: 'sky.200',
-    // },
-
     '&--disabled': {
       pointerEvents: 'none',
       opacity: 0.6,

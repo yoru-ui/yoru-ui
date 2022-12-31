@@ -18,7 +18,7 @@ export const Select: React.FC<BaseSelectProps> = props => {
     y: number;
   } | null>(null);
 
-  const buttonStyled = useResolvedThemes('Select', {});
+  const selectStyled = useResolvedThemes('Select', {});
 
   const toggleDropdown = React.useCallback(() => {
     setIsOpen(prevState => !prevState);
@@ -42,8 +42,10 @@ export const Select: React.FC<BaseSelectProps> = props => {
   };
 
   const onClearSelected = () => {
+    if (onChange) {
+      return isMultiple ? onChange([]) : onChange(null);
+    }
     toggleDropdown();
-    return isMultiple ? onChange([]) : onChange(null);
   };
 
   // accessbility
@@ -72,7 +74,7 @@ export const Select: React.FC<BaseSelectProps> = props => {
   };
 
   return (
-    <yoru.div className="yoru-select" __style={{ ...buttonStyled, ...styles }}>
+    <yoru.div className="yoru-select" __style={{ ...selectStyled, ...styles }}>
       <yoru.div
         className={`yoru-select-inner ${isOpen ? 'yoru-select-inner--focused' : ''}`}
         tabIndex={0}

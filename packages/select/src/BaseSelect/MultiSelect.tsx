@@ -7,12 +7,10 @@ export const MultiSelect: React.FC<BaseMultipleSelectProps> = props => {
   const { value, placeholder, onClearSelected, handleSelected, isOpen } = props;
 
   const renderPlaceholder = () => {
-    const hiddenStyle = value?.length !== 0 ? { visibility: 'hidden' as const } : undefined;
-    return (
-      <yoru.span className="yoru-selector__placeholder" style={hiddenStyle}>
-        {placeholder}
-      </yoru.span>
-    );
+    if (value) {
+      return null;
+    }
+    return <yoru.span className="yoru-selector__placeholder">{placeholder}</yoru.span>;
   };
 
   const suffixIcon = () => {

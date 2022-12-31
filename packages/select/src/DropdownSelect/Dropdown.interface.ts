@@ -1,6 +1,6 @@
 export interface DropdownSelectProps {
   open: boolean;
-  toggleDropdown: (e: React.MouseEvent) => void;
+  toggleDropdown: (e: MouseEvent) => void;
   children: React.ReactNode;
   properties?: {
     width: number;
