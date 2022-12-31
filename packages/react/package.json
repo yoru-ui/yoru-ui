@@ -1,6 +1,6 @@
 {
   "name": "@yoru-ui/react",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
