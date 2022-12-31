@@ -1,0 +1,43 @@
+{
+  "name": "@yoru-ui/select",
+  "version": "1.0.0",
+  "description": "select ui components",
+  "keywords": [
+    "select",
+    "UI select react",
+    "yoru-ui"
+  ],
+  "author": "justirva",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yoru-UI/yoru-ui",
+    "directory": "packages/select"
+  },
+  "bugs": {
+    "url": "https://github.com/Yoru-UI/yoru-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@yoru-ui/core": "workspace:^1.0.0",
+    "@yoru-ui/input": "workspace:^1.0.0",
+    "@yoru-ui/themes": "workspace:^1.0.0"
+  }
+}
