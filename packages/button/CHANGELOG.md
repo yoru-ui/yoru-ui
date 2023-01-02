@@ -1,5 +1,11 @@
 # @yoru-ui/button
 
+## 3.1.2
+
+### Patch Changes
+
+- testing button
+
 ## 3.1.1
 
 ### Patch Changes

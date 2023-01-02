@@ -1,5 +1,12 @@
 # @yoru-ui/react
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @yoru-ui/button@3.1.2
+
 ## 1.1.1
 
 ### Patch Changes
