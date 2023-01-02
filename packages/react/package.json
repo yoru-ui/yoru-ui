@@ -1,6 +1,6 @@
 {
   "name": "@yoru-ui/react",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@yoru-ui/button": "workspace:*",
     "@yoru-ui/core": "workspace:*",
+    "@yoru-ui/select": "workspace:*",
     "@yoru-ui/themes": "workspace:*"
   },
   "peerDependencies": {

@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@yoru-ui/core": "workspace:*",
-    "@yoru-ui/themes": "workspace:*"
+    "@yoru-ui/themes": "workspace:*",
+    "@emotion/react": "^11.9.0"
   }
 }
