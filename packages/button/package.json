@@ -1,6 +1,6 @@
 {
   "name": "@yoru-ui/button",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Button ui components",
   "keywords": [
     "Button",
@@ -8,13 +8,13 @@
   ],
   "author": "justirva09",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
