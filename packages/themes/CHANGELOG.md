@@ -1,5 +1,11 @@
 # @yoru-ui/themes
 
+## 1.1.2
+
+### Patch Changes
+
+- testing
+
 ## 1.1.1
 
 ### Patch Changes
