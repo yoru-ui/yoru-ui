@@ -1,5 +1,12 @@
 # @yoru-ui/react
 
+## 1.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @yoru-ui/select@1.2.0
+
 ## 1.4.0
 
 ### Minor Changes

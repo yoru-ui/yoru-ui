@@ -1,6 +1,6 @@
 {
   "name": "@yoru-ui/select",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "select ui components",
   "keywords": [
     "select",
@@ -9,10 +9,9 @@
   ],
   "author": "justirva",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "sideEffects": false,
   "files": [
     "dist"
   ],

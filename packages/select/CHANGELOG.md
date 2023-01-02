@@ -1,5 +1,11 @@
 # @yoru-ui/select
 
+## 1.2.0
+
+### Minor Changes
+
+- testing
+
 ## 1.1.1
 
 ### Patch Changes
