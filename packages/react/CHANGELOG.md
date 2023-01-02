@@ -1,5 +1,11 @@
 # @yoru-ui/react
 
+## 1.2.0
+
+### Minor Changes
+
+- testing
+
 ## 1.1.4
 
 ### Patch Changes
