@@ -1,6 +1,6 @@
 {
   "name": "@yoru-ui/radio",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "radio ui components",
   "keywords": [
     "radio",
@@ -35,7 +35,7 @@
     "build:fast": "tsup src/index.ts --format=esm,cjs"
   },
   "dependencies": {
-    "@yoru-ui/core": "workspace:^1.1.0",
-    "@yoru-ui/themes": "workspace:^1.1.0"
+    "@yoru-ui/core": "workspace:^1.2.0",
+    "@yoru-ui/themes": "workspace:^2.0.0"
   }
 }

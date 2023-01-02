@@ -1,5 +1,14 @@
 # @yoru-ui/select
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @yoru-ui/themes@2.0.0
+  - @yoru-ui/core@1.2.0
+  - @yoru-ui/input@1.1.1
+
 ## 1.1.0
 
 ### Minor Changes

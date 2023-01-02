@@ -1,5 +1,17 @@
 # @yoru-ui/button
 
+## 4.0.0
+
+### Minor Changes
+
+- testing
+
+### Patch Changes
+
+- Updated dependencies
+  - @yoru-ui/themes@2.0.0
+  - @yoru-ui/core@1.2.0
+
 ## 3.1.3
 
 ### Patch Changes

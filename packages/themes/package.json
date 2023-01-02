@@ -1,6 +1,6 @@
 {
   "name": "@yoru-ui/themes",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "themes ui components",
   "keywords": [
     "themes",
@@ -38,14 +38,15 @@
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "react": "18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "@yoru-ui/core": "workspace:*"
   },
   "devDependencies": {
     "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1"
+    "@emotion/styled": "^11.8.1",
+    "@yoru-ui/core": "workspace:*"
   },
   "dependencies": {
-    "@yoru-ui/core": "workspace:*",
     "@yoru-ui/utils": "workspace:*"
   }
 }

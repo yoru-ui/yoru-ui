@@ -1,6 +1,6 @@
 {
   "name": "@yoru-ui/button",
-  "version": "3.1.3",
+  "version": "4.0.0",
   "description": "Button ui components",
   "keywords": [
     "Button",
@@ -33,8 +33,11 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src/index.ts --format=esm,cjs"
   },
-  "dependencies": {
-    "@emotion/react": "^11.9.0",
+  "peerDependencies": {
+    "@yoru-ui/core": "workspace:*",
+    "@yoru-ui/themes": "workspace:*"
+  },
+  "devDependencies": {
     "@yoru-ui/core": "workspace:*",
     "@yoru-ui/themes": "workspace:*"
   }
