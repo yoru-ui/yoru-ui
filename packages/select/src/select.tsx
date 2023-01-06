@@ -11,13 +11,7 @@ export const Select: React.FC<BaseSelectProps> = props => {
   const { value, options, placeholder, onChange, isMultiple, styles } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
-
-  const [dropdownDimension, setDropdownDimension] = React.useState<{
-    width: number;
-    x: number;
-    y: number;
-  } | null>(null);
-
+  const selectRef = React.useRef<HTMLDivElement>(null);
   const selectStyled = useResolvedThemes('Select', {});
 
   const toggleDropdown = React.useCallback(() => {
@@ -57,17 +51,7 @@ export const Select: React.FC<BaseSelectProps> = props => {
     }
   };
 
-  // set dimension of dropdown when open
-  const getNodeRef = React.useCallback((domNode: HTMLElement) => {
-    if (domNode) {
-      const bounds = domNode.getBoundingClientRect();
-      setDropdownDimension({
-        width: bounds.width,
-        x: bounds.x,
-        y: bounds.y + bounds.height + 5,
-      });
-    }
-  }, []);
+  const getNodeRef = React.useCallback((): HTMLDivElement | null => selectRef.current, []);
 
   const isOptionSelected = (option: SelectOption) => {
     return isMultiple ? value?.includes(option) : option === value;
@@ -78,7 +62,7 @@ export const Select: React.FC<BaseSelectProps> = props => {
       <yoru.div
         className={`yoru-select-inner ${isOpen ? 'yoru-select-inner--focused' : ''}`}
         tabIndex={0}
-        ref={getNodeRef}
+        ref={selectRef}
         onClick={toggleDropdown}
         onKeyDown={handlerKeyDown}
       >
@@ -100,9 +84,9 @@ export const Select: React.FC<BaseSelectProps> = props => {
         )}
         <DropdownSelect
           open={isOpen}
-          properties={dropdownDimension}
           toggleDropdown={toggleDropdown}
           isMultiple={isMultiple}
+          getSelectRef={getNodeRef}
         >
           {options
             ? options.map((option, index) => (
